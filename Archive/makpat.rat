@@ -1,0 +1,66 @@
+#-H- MAKPAT.RAT 2009 1980 103 2154
+INCLUDE MDEF
+ 
+# MAKPAT - MAKE PATTERN FROM ARG(FROM), TERMINATE AT DELIM
+   INTEGER FUNCTION MAKPAT(ARG, FROM, DELIM, PAT)
+   CHARACTER ESC
+   CHARACTER ARG(MAXARG), DELIM, PAT(MAXPAT)
+   INTEGER ADDSET, GETCCL, STCLOS
+   INTEGER FROM, I, J, JUNK, LASTCL, LASTJ, LJ, NSUBS, SP, SUBSTK(MAXSUBS)
+ 
+   J = 1      # PAT INDEX
+   LASTJ = 1
+   LASTCL = 0
+   NSUBS = 0%# COUNTS NUMBER OF @(@) PAIRS
+   SP = 0%# STACK POINTER FOR SUBSTK
+   FOR (I = FROM; ARG(I) ^= DELIM & ARG(I) ^= EOS; I = I + 1) <
+      LJ = J
+      IF (ARG(I) == ANY)
+         JUNK = ADDSET(ANY, PAT, J, MAXPAT)
+      ELSE IF (ARG(I) == BOL & I == FROM)
+         JUNK = ADDSET(BOL, PAT, J, MAXPAT)
+      ELSE IF (ARG(I) == EOL & ARG(I + 1) == DELIM)
+         JUNK = ADDSET(EOL, PAT, J, MAXPAT)
+      ELSE IF (ARG(I) == CCL) <
+         IF (GETCCL(ARG, I, PAT, J) == ERR)
+            BREAK
+         !
+      ELSE IF (ARG(I) == CLOSURE & I > FROM) <
+         LJ = LASTJ
+         IF (PAT(LJ)==BOL \ PAT(LJ)==EOL \ PAT(LJ)==CLOSURE \
+             PAT(LJ-1) == BOSS \ PAT(LJ-1) == EOSS)
+                BREAK
+         LASTCL = STCLOS(PAT, J, LASTJ, LASTCL)
+         !
+      ELSE IF (ARG(I) == ESCAPE & ARG(I+1) == LPAREN) <
+         NSUBS = NSUBS + 1
+         IF (NSUBS >= MAXSUBS)
+            BREAK
+         JUNK = ADDSET(BOSS, PAT, J, MAXPAT)
+         JUNK = ADDSET(NSUBS, PAT, J, MAXPAT)
+         SP = SP + 1
+         SUBSTK(SP) = NSUBS
+         I = I + 1
+         !
+      ELSE IF (ARG(I) == ESCAPE & ARG(I+1) == RPAREN) <
+         IF (SP <= 0)
+            BREAK
+         JUNK = ADDSET(EOSS, PAT, J, MAXPAT)
+         JUNK = ADDSET(SUBSTK(SP), PAT, J, MAXPAT)
+         SP = SP - 1
+         I = I + 1
+         !
+      ELSE <
+         JUNK = ADDSET(CHAR, PAT, J, MAXPAT)
+         JUNK = ADDSET(ESC(ARG, I), PAT, J, MAXPAT)
+         !
+      LASTJ = LJ
+      !
+   IF (ARG(I) ^= DELIM \ SP ^= 0)   # TERMINATED EARLY
+      MAKPAT = ERR
+   ELSE IF (ADDSET(EOS, PAT, J, MAXPAT) == NO)   # NO ROOM
+      MAKPAT = ERR
+   ELSE
+      MAKPAT = I
+   RETURN
+   END

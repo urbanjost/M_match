@@ -1,0 +1,6 @@
+integer function getpat(arg, pat)
+! getpat - convert argument into pattern
+   integer arg(maxarg), pat(maxpat)
+   integer makpat
+   getpat = makpat(arg, 1, eos, pat)
+end function getpat

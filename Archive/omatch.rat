@@ -1,0 +1,56 @@
+#-H- OMATCH.RAT 1149 1980 103 2154
+INCLUDE MDEF
+ 
+# OMATCH - TRY TO MATCH A SINGLE PATTERN AT PAT(J)
+   INTEGER FUNCTION OMATCH(LIN, I, PAT, J)
+   CHARACTER LIN(MAXLINE), PAT(MAXPAT)
+   INTEGER LOCATE
+   INTEGER BUMP, I, J
+   INCLUDE CSUBS
+ 
+   OMATCH = NO
+   IF (LIN(I) == EOS)
+      RETURN
+   BUMP = -1
+   IF (PAT(J) == CHAR) <
+      IF (LIN(I) == PAT(J + 1))
+         BUMP = 1
+      !
+   ELSE IF (PAT(J) == BOL) <
+      IF (I == 1)
+         BUMP = 0
+      !
+   ELSE IF (PAT(J) == ANY) <
+      IF (LIN(I) ^= NEWLINE)
+         BUMP = 1
+      !
+   ELSE IF (PAT(J) == EOL) <
+      IF (LIN(I) == NEWLINE \ LIN(I) == EOS)
+         BUMP = 0
+      !
+   ELSE IF (PAT(J) == CCL) <
+      IF (LOCATE(LIN(I), PAT, J + 1) == YES)
+         BUMP = 1
+      !
+   ELSE IF (PAT(J) == NCCL) <
+      IF (LIN(I) ^= NEWLINE & LOCATE(LIN(I), PAT, J + 1) == NO)
+         BUMP = 1
+      !
+   ELSE IF (PAT(J) == BOSS) <
+      K = PAT(J+1)
+      BPOS(K+1) = I
+      BUMP = 0
+      !
+   ELSE IF (PAT(J) == EOSS) <
+      K = PAT(J+1)
+      EPOS(K+1) = I
+      BUMP = 0
+      !
+   ELSE
+      CALL ERROR("IN OMATCH: CAN'T HAPPEN.")
+   IF (BUMP >= 0) <
+      I = I + BUMP
+      OMATCH = YES
+      !
+   RETURN
+   END

@@ -1,0 +1,30 @@
+#-H- ESC.RAT 794 1980 103 2153
+INCLUDE MDEF
+ 
+# ESC - MAP  ARRAY(I)  INTO ESCAPED CHARACTER IF APPROPRIATE
+   CHARACTER FUNCTION ESC(ARRAY, I)
+   CHARACTER ARRAY(ARB)
+   INTEGER I
+ 
+   IF (ARRAY(I) ^= ESCAPE)
+      ESC = ARRAY(I)
+   ELSE IF (ARRAY(I+1) == EOS)   # NOT SPECIAL AT END
+      ESC = ESCAPE
+   ELSE <
+      I = I + 1
+      IF (ARRAY(I) == LETN \ ARRAY(I) == BIGN)
+         ESC = NEWLINE
+      ELSE IF (ARRAY(I) == LETT \ ARRAY(I) == BIGT)
+         ESC = TAB
+      ELSE IF (ARRAY(I) == LETB \ ARRAY(I) == BIGB)
+         ESC = BACKSPACE
+      ELSE IF (ARRAY(I) >= DIG0 & ARRAY(I) <= DIG7) <
+         FOR (ESC = 0; ARRAY(I) >= DIG0 & ARRAY(I) <= DIG7; I = I + 1)
+            ESC = 8*ESC + ARRAY(I) - DIG0
+         I = I - 1%# SO LIKE OTHER CASES
+         !
+      ELSE
+         ESC = ARRAY(I)
+      !
+   RETURN
+   END

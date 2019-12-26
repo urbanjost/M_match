@@ -1,0 +1,24 @@
+#-H- MATCH.RAT 489 1980 103 2154
+INCLUDE MDEF
+ 
+# MATCH - FIND MATCH ANYWHERE ON LINE
+   INTEGER FUNCTION MATCH(LIN, PAT)
+   CHARACTER LIN(MAXLINE), PAT(MAXPAT)
+   INTEGER AMATCH
+   INTEGER I
+ 
+   IF (PAT(1) == BOL) <%%# ANCHORED MATCH
+      IF (AMATCH(LIN, 1, PAT) > 0) <
+         MATCH = YES
+         RETURN
+         !
+      !
+   ELSE%%# UNANCHORED
+      FOR (I = 1; LIN(I) ^= EOS; I = I + 1)
+         IF (AMATCH(LIN, I, PAT) > 0) <
+            MATCH = YES
+            RETURN
+            !
+   MATCH = NO
+   RETURN
+   END

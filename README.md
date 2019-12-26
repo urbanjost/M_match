@@ -6,7 +6,7 @@ regular expressions as described in "Software Tools" by Kernighan and
 Plauger, 1976.
 
 The metacharacters used are currently true to the original code and
-very from those typically used in Unix regular expressions:
+vary from those typically used in Unix regular expressions:
 
     > ?  any single character
     > *  any number (including zero) of repeats of previous character
@@ -25,3 +25,10 @@ There are times when it is inconvenient to depend on external C libraries for
 processing regular expressions from Fortran. It is hoped this will be useful
 primarily because it is a native implementation in Fortran, albeit it is not
 as optimized or as feature-rich as several common regex C libraries.
+
+    git clone https://github.com/urbanjost/M_change.git
+    cd M_calculator/src
+    # change Makefile if not using gfortran(1)
+    make
+    # run simple example program
+    PROGRAMS/findchange '%!' <M_change.f90

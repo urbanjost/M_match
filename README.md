@@ -6,7 +6,7 @@ regular expressions as described in "Software Tools" by Kernighan and
 Plauger, 1976.
 
 The metacharacters used are currently true to the original code and
-very from those typically used in Unix regular expressions:
+vary from those typically used in Unix regular expressions:
 
     > ?  any single character
     > *  any number (including zero) of repeats of previous character

@@ -1,15 +1,13 @@
 module M_match
-! based on a Ratfor implementation from "Software Tools"
-! EXTREMELY preliminary and about 30 times slower than the C regex library
-! at this point, although some of that is because stream I/O is not being
-! used, but sequential I/O with fixed line length.
 implicit none
 private
-public :: getpat !....... encode regular expression for pattern matching
-public :: makpat !....... encode regular expression for pattern matching
-public :: amatch !....... look for pattern matching regular expression
-public :: match  !....... match pattern anywhere on line
-public :: error
+public :: getpat  !....... encode regular expression for pattern matching
+public :: match   !....... match pattern anywhere on line
+public :: amatch  !....... look for pattern matching regular expression
+public :: makpat  !....... encode regular expression for pattern matching
+public regex_pattern
+private :: omatch
+private :: error
 private :: addset
 private :: dodash
 private :: locate
@@ -18,28 +16,27 @@ private :: stclos
 private :: getccl
 private :: filset
 private :: esc
-private :: omatch
+interface getpat;     module procedure getpat_, getpat__;           end interface
+interface makpat;     module procedure makpat_          ;           end interface
+interface amatch;     module procedure amatch_          ;           end interface
+interface match;      module procedure match_,  match__ ;           end interface
+interface omatch;     module procedure omatch_          ;           end interface
+
 !========== STANDARD RATFOR DEFINITIONS ==========
 !!integer,parameter :: CHARACTER=INTEGER
 integer,parameter :: chr=kind(1)
 integer,parameter :: byte=kind(1)
 integer,parameter :: def=kind(1)
-!!integer,parameter :: ABS=IABS
-!!integer,parameter :: MIN=MIN0
-!!integer,parameter :: MAX=MAX0
 !!integer,parameter :: ANDIF=IF
 
 integer(kind=byte),parameter :: EOF=10003_byte
 integer(kind=byte),parameter,public :: EOS=10002_byte
 integer(kind=byte),parameter,public :: ERR=10001_byte
 integer(kind=byte),parameter,public :: YES=1_byte
-
-integer(kind=byte),parameter :: ALPHA=10100_byte
-integer(kind=byte),parameter :: HUGE=30000_byte
+!!integer(kind=byte),parameter :: ARB=100_byte
 
 integer(kind=byte),parameter :: ACCENT=96_byte
 integer(kind=byte),parameter :: AND=38_byte
-!!integer(kind=byte),parameter :: ARB=100_byte
 integer(kind=byte),parameter :: ATSIGN=64_byte
 integer(kind=byte),parameter :: BACKSLASH=92_byte
 integer(kind=byte),parameter :: BACKSPACE=8_byte
@@ -127,7 +124,7 @@ integer(kind=byte),parameter,public :: MAXLINE=1024_byte       ! TYPICAL LINE LE
 !!integer(kind=byte),parameter :: MAXNAME=30_byte        ! TYPICAL FILE NAME SIZE
 integer(kind=byte),parameter :: MINUS=45_byte
 integer(kind=byte),parameter :: NEWLINE=10_byte
-integer(kind=byte),parameter :: NO=0_byte
+integer(kind=byte),parameter,public :: NO=0_byte
 integer(kind=byte),parameter :: NOERR=0_byte
 integer(kind=byte),parameter :: NOT=126_byte           ! SAME AS TILDE
 integer(kind=byte),parameter :: OK=-2_byte
@@ -155,15 +152,8 @@ integer(kind=byte),parameter :: UNDERLINE=95_byte
 integer(kind=byte),parameter :: WRITE=1_byte
 
 ! HANDY MACHINE-DEPENDENT PARAMETERS, CHANGE FOR A NEW MACHINE
-integer(kind=byte),parameter :: BPI=36                  ! BITS PER INTEGER
-integer(kind=byte),parameter :: BPC=7                   ! BITS PER CHARACTER
-integer(kind=byte),parameter :: CPI=5                   ! CHARACTERS PER INTEGER
-integer(kind=byte),parameter :: LIMIT=134217728         ! LARGEST POSITIVE INTEGER
-integer(kind=byte),parameter :: LIM1=28                 ! MAXIMUM EXPONENT (POWER OF TEN
-integer(kind=byte),parameter :: LIM2=-28                ! MINIMUM EXPONENT (POWER OF TEN
-integer(kind=byte),parameter :: PRECISION=7             ! DIGITS ACCURATE IN REAL
-integer(kind=byte),parameter,public  :: MAXPAT=128
-integer(kind=byte),parameter,public  :: MAXARG=128
+integer(kind=byte),parameter,public  :: MAXPAT=512
+integer(kind=byte),parameter,public  :: MAXARG=512
 integer(kind=byte),parameter :: MAXSUBS=10
 
 integer(kind=byte),parameter :: COUNT=1
@@ -171,31 +161,77 @@ integer(kind=byte),parameter :: PREVCL=2
 integer(kind=byte),parameter :: START=3
 integer(kind=byte),parameter :: CLOSIZE=4
 
-integer(kind=byte),parameter :: BOL=PERCENT
-integer(kind=byte),parameter :: ANY=QMARK
-integer(kind=byte),parameter :: EOL=DOLLAR
-integer(kind=byte),parameter :: CLOSURE=STAR
+!!integer(kind=byte),parameter  :: ESCAPE=ATSIGN
+!!integer(kind=byte),parameter  :: ANY=QMARK
+!!integer(kind=byte),parameter  :: BOL=PERCENT
+
+integer(kind=byte),parameter   :: EOL=DOLLAR
+integer(kind=byte),parameter   :: CLOSURE=STAR
+integer(kind=byte),parameter   :: DASH=MINUS
+integer(kind=byte),parameter   :: ESCAPE=BACKSLASH
+integer(kind=byte),parameter   :: ANY=PERIOD
+integer(kind=byte),parameter   :: BOL=CARET
+
 integer(kind=byte),parameter :: CCL=LBRACK
 integer(kind=byte),parameter :: CCLEND=RBRACK
+
 integer(kind=byte),parameter :: NCCL=LETN
 integer(kind=byte),parameter :: CHAR=LETA
-integer(kind=byte),parameter :: ESCAPE=ATSIGN
-integer(kind=byte),parameter :: DASH=MINUS
 integer(kind=byte),parameter :: BOSS=LBRACE        ! <
 integer(kind=byte),parameter :: EOSS=RBRACE        ! >
-
-integer(kind=byte),parameter :: DITTO=(-3_byte)
-integer(kind=byte),parameter :: DITTO1=(-4_byte)
 
 !!COMMON /CSUBS/ BPOS(MAXSUBS), EPOS(MAXSUBS)
 integer(kind=byte) ::  bpos(maxsubs)           ! beginning of partial match
 integer(kind=byte) ::  epos(maxsubs)           ! end of corresponding partial match
+
+type :: regex_pattern
+   integer :: pat(MAXPAT)
+end type regex_pattern
+
 contains
 !----------------------------------------------------------------------------------------------------------------------------------!
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !----------------------------------------------------------------------------------------------------------------------------------!
+function f2r(string,isize)
+
+character(len=*),parameter::ident_1="&
+&@(#)M_match::f2r(3f): convert Fortran character variable to Ratfor integer array with Ratfor terminator"
+
+character(len=*),intent(in) :: string
+integer,intent(in)          :: isize
+!!integer                     :: f2r(len(string)+1)
+integer                     :: f2r(isize)
+integer                     :: i
+f2r=blank
+   do i=1,len_trim(string)
+      f2r(i)=ichar(string(i:i))
+   enddo
+   f2r(i)=eos
+end function f2r
+!----------------------------------------------------------------------------------------------------------------------------------!
+!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
+!----------------------------------------------------------------------------------------------------------------------------------!
+function r2f(ints)
+
+character(len=*),parameter::ident_2="@(#)M_match::r2f(3f): convert Ratfor integer array to Fortran character variable"
+
+integer,intent(in)          :: ints(:)
+character(len=size(ints)-1) :: r2f
+integer                     :: i
+intrinsic char
+   r2f=' '
+   do i=1,size(ints)-1
+      if(ints(i).eq.eos)then
+         exit
+      endif
+      r2f(i:i)=char(ints(i))
+   enddo
+end function r2f
+!----------------------------------------------------------------------------------------------------------------------------------!
+!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
+!----------------------------------------------------------------------------------------------------------------------------------!
 ! NAME
-!    getpat - [M_match] convert argument into pattern
+!    getpat_ - [M_match] convert argument into pattern
 ! SYNOPSIS
 ! DESCRIPTION
 ! OPTIONS
@@ -207,14 +243,25 @@ contains
 !   "Software Tools" by Kernighan and Plauger , 1976
 ! LICENSE
 !   Public Domain
-function getpat(arg, pat)
+function getpat_(arg, pat)
 
-character(len=*),parameter::ident_1="@(#)getpat convert argument into pattern"
+character(len=*),parameter::ident_3="@(#)M_match::getpat_ convert argument into pattern"
 
-integer(kind=def) :: getpat
+integer(kind=def) :: getpat_
 integer(kind=def) :: arg(maxarg), pat(maxpat)
-   getpat = makpat(arg, 1, eos, pat)
-end function getpat
+   getpat_ = makpat_(arg, 1, eos, pat)
+end function getpat_
+!===================================================================================================================================
+function getpat__(arg_str, pat)
+
+character(len=*),parameter::ident_4="@(#)M_match::getpat__ convert argument into pattern"
+
+character(len=*),intent(in) :: arg_str
+integer(kind=def) :: getpat__
+integer(kind=def) :: arg(maxarg), pat(maxpat)
+   arg=f2r(arg_str,size(arg))
+   getpat__ = makpat_(arg, 1, eos, pat)
+end function getpat__
 !----------------------------------------------------------------------------------------------------------------------------------!
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !----------------------------------------------------------------------------------------------------------------------------------!
@@ -233,7 +280,7 @@ end function getpat
 !   Public Domain
 function addset(c, set, j, maxsiz)
 
-character(len=*),parameter::ident_2="@(#)addset put C in SET(J) if it fits, increment J"
+character(len=*),parameter::ident_5="@(#)M_match::addset put C in SET(J) if it fits, increment J"
 
 integer(kind=byte) :: addset
 integer(kind=chr)  :: c
@@ -266,7 +313,7 @@ end function addset
 !   Public Domain
 subroutine dodash(array, i, set, j, maxset)
 
-character(len=*),parameter::ident_3="@(#)dodash expand array(i-1)-array(i+1) into set(j)..."
+character(len=*),parameter::ident_6="@(#)M_match::dodash expand array(i-1)-array(i+1) into set(j)..."
 
 integer(kind=chr) :: array(:)
 integer(kind=def),intent(inout) :: i
@@ -300,7 +347,7 @@ end subroutine dodash
 !   Public Domain
 function locate(c, pat, offset)
 
-character(len=*),parameter::ident_4="@(#)locate look for c in char class at pat(offset)"
+character(len=*),parameter::ident_7="@(#)M_match::locate look for c in char class at pat(offset)"
 
 integer(kind=def) :: locate
 integer(kind=chr) :: c, pat(maxpat)
@@ -332,32 +379,43 @@ end function locate
 !   "Software Tools" by Kernighan and Plauger , 1976
 ! LICENSE
 !   Public Domain
-function match(lin, pat)
+function match_(lin, pat)
 
-character(len=*),parameter::ident_5="@(#)match find match anywhere on line"
+character(len=*),parameter::ident_8="@(#)M_match::match find match anywhere on line"
 
-integer(kind=def) :: match
+integer(kind=def) :: match_
 integer(kind=chr) :: lin(maxline), pat(maxpat)
 integer(kind=def) :: i
 
    if (pat(1) == bol) then            ! anchored match
-      if (amatch(lin, 1, pat) > 0) then
-         match = yes
+      if (amatch_(lin, 1, pat) > 0) then
+         match_ = yes
          return
       endif
    else               ! unanchored
       !- for (i = 1; lin(i) /= eos; i = i + 1)
       i=1
       do while (lin(i) /= eos)
-         if (amatch(lin, i, pat) > 0) then
-            match = yes
+         if (amatch_(lin, i, pat) > 0) then
+            match_ = yes
             return
          endif
          i=i+1
       enddo
    endif
-   match = no
-end function match
+   match_ = no
+end function match_
+!==================================================================================================================================!
+function match__(lin_str, pat)
+
+character(len=*),parameter::ident_9="@(#)M_match::match find match anywhere on line"
+
+character(len=*),intent(in) :: lin_str
+integer(kind=def) :: match__
+integer(kind=chr) :: lin(maxline), pat(maxpat)
+   lin=f2r(lin_str,size(lin))
+   match__=match_(lin,pat)
+end function match__
 !----------------------------------------------------------------------------------------------------------------------------------!
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !----------------------------------------------------------------------------------------------------------------------------------!
@@ -376,7 +434,7 @@ end function match
 !   Public Domain
 function patsiz(pat, n)
 
-character(len=*),parameter::ident_6="@(#)patsiz returns size of pattern entry at pat(n)"
+character(len=*),parameter::ident_10="@(#)M_match::patsiz returns size of pattern entry at pat(n)"
 
 integer(kind=def) :: patsiz
 integer(kind=chr) :: pat(maxpat)
@@ -412,7 +470,7 @@ end function patsiz
 !   Public Domain
 function stclos(pat, j, lastj, lastcl)
 
-character(len=*),parameter::ident_7="@(#)stclos insert closure entry at pat(j)"
+character(len=*),parameter::ident_11="@(#)M_match::stclos insert closure entry at pat(j)"
 
 integer(kind=def) :: stclos
 integer(kind=chr) :: pat(maxpat)
@@ -448,7 +506,7 @@ end function stclos
 !   Public Domain
 function getccl(arg, i, pat, j)
 
-character(len=*),parameter::ident_8="@(#)getccl expand char class at arg(i) into pat(j)"
+character(len=*),parameter::ident_12="@(#)M_match::getccl expand char class at arg(i) into pat(j)"
 
 integer(kind=def) :: getccl
 integer(kind=chr)  :: arg(maxarg), pat(maxpat)
@@ -489,7 +547,7 @@ end function getccl
 !   Public Domain
 subroutine filset(delim, array, i, set, j, maxset)
 
-character(len=*),parameter::ident_9="@(#)filset expand set at  array(i)  into  set(j),  stop at  delim"
+character(len=*),parameter::ident_13="@(#)M_match::filset expand set at  array(i)  into  set(j),  stop at  delim"
 
 integer(kind=def) :: i, j, junk, maxset
 integer(kind=chr) :: array(:), delim, set(:)
@@ -527,7 +585,7 @@ end subroutine filset
 !   Public Domain
 function esc(array, i)
 
-character(len=*),parameter::ident_10="@(#)esc map  array(i)  into escaped character if appropriate"
+character(len=*),parameter::ident_14="@(#)M_match::esc map  array(i)  into escaped character if appropriate"
 integer(kind=chr) :: esc
 integer(kind=chr) :: array(:)
 integer(kind=def) :: i
@@ -561,7 +619,7 @@ end function esc
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !----------------------------------------------------------------------------------------------------------------------------------!
 ! NAME
-!    omatch - [M_match] try to match a single pattern at pat(j)
+!    omatch_ - [M_match] try to match a single pattern at pat(j)
 ! SYNOPSIS
 ! DESCRIPTION
 ! OPTIONS
@@ -573,15 +631,15 @@ end function esc
 !   "Software Tools" by Kernighan and Plauger , 1976
 ! LICENSE
 !   Public Domain
-function omatch(lin, i, pat, j)
+function omatch_(lin, i, pat, j)
 
-character(len=*),parameter::ident_11="@(#)omatch try to match a single pattern at pat(j)"
+character(len=*),parameter::ident_15="@(#)M_match::omatch_ try to match a single pattern at pat(j)"
 
-integer(kind=def) ::  omatch
+integer(kind=def) ::  omatch_
 integer(kind=chr)  :: lin(maxline), pat(maxpat)
 integer(kind=def) :: bump, i, j, k
 
-   omatch = no
+   omatch_ = no
    if (lin(i) == eos)then
       return
    endif
@@ -619,20 +677,20 @@ integer(kind=def) :: bump, i, j, k
       epos(k+1) = i
       bump = 0
    else
-      call error("in omatch: can't happen.")
+      call error("in omatch_: can't happen.")
    endif
    if (bump >= 0) then
       i = i + bump
-      omatch = yes
+      omatch_ = yes
    endif
-end function omatch
+end function omatch_
 !----------------------------------------------------------------------------------------------------------------------------------!
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !----------------------------------------------------------------------------------------------------------------------------------!
 ! NAME
-!    amatch - [M_match] - look for pattern matching regular expression; returns its location
+!    amatch_ - [M_match] - look for pattern matching regular expression; returns its location
 ! SYNOPSIS
-!       loc = amatch (line, from, pat, tagbeg, tagend)
+!       loc = amatch_ (line, from, pat, tagbeg, tagend)
 ! 
 !        character line(ARB), pat(MAXPAT)
 !        integer from
@@ -642,34 +700,34 @@ end function omatch
 !        integer loc returns location/0
 !        matched; if no match, loc is returned as 0
 ! DESCRIPTION
-!        AMATCH(3f)  scans 'line' starting at location 'from', looking for
+!        amatch_(3f)  scans 'line' starting at location 'from', looking for
 !        a  pattern which matches the regular expression coded in 'pat'.
 !        If the pattern is found, its starting location in line is
-!        returned. If the pattern is not found, AMATCH(3f)  returns 0.
+!        returned. If the pattern is not found, amatch_(3f)  returns 0.
 ! 
 !        The regular expression in 'pat' must have been previously encoded
-!        by 'getpat' or 'makpat'. (For a complete description of regular
+!        by 'getpat_' or 'makpat_'. (For a complete description of regular
 !        expressions, see the writeup on the editor.)
 ! 
-!        AMATCH(3f)  is a special-purpose version of match, which should
+!        amatch_(3f)  is a special-purpose version of match, which should
 !        be used in most cases.
 ! 
 ! OPTIONS
 ! RETURNS
 ! EXAMPLE
 ! SEE ALSO
-!        match, getpat, makpat
+!        match, getpat_, makpat_
 ! AUTHOR
 !   John S. Urban
 ! REFERENCE
 !   "Software Tools" by Kernighan and Plauger , 1976
 ! LICENSE
 !   Public Domain
-function amatch(lin, from, pat)
+function amatch_(lin, from, pat)
 
-character(len=*),parameter::ident_12="@(#)amatch  (non-recursive) look for match starting at lin(from)"
+character(len=*),parameter::ident_16="@(#)M_match::amatch_  (non-recursive) look for match starting at lin(from)"
 
-integer(kind=def) :: amatch
+integer(kind=def) :: amatch_
 integer(kind=chr)  :: lin(maxline), pat(maxpat)
 integer(kind=def) :: from, i, j, offset, stack
    stack = 0
@@ -688,14 +746,14 @@ integer(kind=def) :: from, i, j, offset, stack
          !- for (i = offset; lin(i) /= eos; )   ! match as many as possible
          i = offset
          do while ( lin(i) /= eos )                 ! match as many as
-            if (omatch(lin, i, pat, j) == no)then   ! possible
+            if (omatch_(lin, i, pat, j) == no)then   ! possible
                exit
             endif
          enddo
          pat(stack+count) = i - offset
          pat(stack+start) = offset
          offset = i      ! character that made us fail
-      elseif (omatch(lin, offset, pat, j) == no) then   ! non-closure
+      elseif (omatch_(lin, offset, pat, j) == no) then   ! non-closure
 !-         for ( ; stack > 0; stack = pat(stack+prevcl))
          do while (stack >0)
             if (pat(stack+count) > 0)then
@@ -704,7 +762,7 @@ integer(kind=def) :: from, i, j, offset, stack
             stack = pat(stack+prevcl)
          enddo
          if (stack <= 0) then      ! stack is empty
-            amatch = 0            ! return failure
+            amatch_ = 0            ! return failure
             return
          endif
          pat(stack+count) = pat(stack+count) - 1
@@ -712,16 +770,16 @@ integer(kind=def) :: from, i, j, offset, stack
          offset = pat(stack+start) + pat(stack+count)
       endif
       j = j + patsiz(pat, j)
-   enddo ! else omatch succeeded
+   enddo ! else omatch_ succeeded
    epos(1) = offset
-   amatch = offset
+   amatch_ = offset
    ! success
-end function amatch
+end function amatch_
 !----------------------------------------------------------------------------------------------------------------------------------!
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !----------------------------------------------------------------------------------------------------------------------------------!
 ! NAME
-!    makpat - [M_match] make pattern from arg(from), terminate at delim
+!    makpat_ - [M_match] make pattern from arg(from), terminate at delim
 ! SYNOPSIS
 ! DESCRIPTION
 ! OPTIONS
@@ -733,11 +791,11 @@ end function amatch
 !   "Software Tools" by Kernighan and Plauger , 1976
 ! LICENSE
 !   Public Domain
-function makpat(arg, from, delim, pat)
+function makpat_(arg, from, delim, pat)
 
-character(len=*),parameter::ident_13="@(#)makpat make pattern from arg(from), terminate at delim"
+character(len=*),parameter::ident_17="@(#)M_match::makpat_ make pattern from arg(from), terminate at delim"
 
-integer(kind=def) :: makpat
+integer(kind=def) :: makpat_
 integer(kind=chr)  :: arg(maxarg), delim, pat(maxpat)
 integer(kind=def) :: from, i, j, junk, lastcl, lastj, lj, nsubs, sp, substk(maxsubs)
 
@@ -762,12 +820,9 @@ integer(kind=def) :: from, i, j, junk, lastcl, lastj, lj, nsubs, sp, substk(maxs
          endif
       elseif (arg(i) == closure .and. i > from) then
          lj = lastj
-         if (pat(lj)==bol .or. pat(lj)==eol .or. pat(lj)==closure)then
+         if(pat(lj)==bol .or. pat(lj)==eol .or. pat(lj)==closure .or. pat(lj-1) == boss .or. pat(lj-1) == eoss) then
+         !maybe?!if(pat(lj)==bol .or. pat(lj)==eol .or. pat(lj)==closure .or. pat(lj) == boss .or. pat(lj) == eoss) then
             exit
-         elseif(lj.gt.1)then
-            if(pat(lj-1) == boss .or. pat(lj-1) == eoss) then
-               exit
-            endif
          endif
          lastcl = stclos(pat, j, lastj, lastcl)
       elseif (arg(i) == escape .and. arg(i+1) == lparen) then
@@ -796,19 +851,20 @@ integer(kind=def) :: from, i, j, junk, lastcl, lastj, lj, nsubs, sp, substk(maxs
       i=i+1
    enddo
    if (arg(i) /= delim .or. sp /= 0)then   ! terminated early
-      makpat = err
+      makpat_ = err
    elseif (addset(eos, pat, j, maxpat) == no)then   ! no room
-      makpat = err
+      makpat_ = err
    else
-      makpat = i
+      makpat_ = i
    endif
-end function makpat
+end function makpat_
 !----------------------------------------------------------------------------------------------------------------------------------!
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !----------------------------------------------------------------------------------------------------------------------------------!
 subroutine error(message)
+use, intrinsic :: iso_fortran_env, only : stderr=>ERROR_UNIT ! access computing environment
 character(len=*),intent(in) :: message
-   write(*,*)message
+   write(stderr,'(a)')message
 end subroutine error
 !----------------------------------------------------------------------------------------------------------------------------------!
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!

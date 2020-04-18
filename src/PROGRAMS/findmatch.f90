@@ -12,7 +12,7 @@ integer             :: ios
    INFINITE: do
       read(*,'(a)',iostat=ios)line
       if(ios.ne.0)exit
-      if (match(trim(line), p%pat) .eq. YES) then
+      if (match(trim(line)//char(10), p%pat) .eq. YES) then
          write(*,'(*(g0,1x))')trim(line)
       endif
    enddo INFINITE

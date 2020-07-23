@@ -26,9 +26,11 @@ processing regular expressions from Fortran. It is hoped this will be useful
 primarily because it is a native implementation in Fortran, albeit it is not
 as optimized or as feature-rich as several common regex C libraries.
 
+```bash
     git clone https://github.com/urbanjost/M_change.git
     cd M_calculator/src
     # change Makefile if not using gfortran(1)
     make
     # run simple example program
     PROGRAMS/findchange '%!' <M_change.f90
+```

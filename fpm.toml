@@ -5,3 +5,8 @@ author = "John S. Urban"
 maintainer = "urbanjost@comcast.net"
 copyright = "2020 John S. Urban"
 description = "Basic Regular Expressions"
+
+[[executable]]
+name="findmatch"
+source-dir="app"
+main="findmatch.f90"

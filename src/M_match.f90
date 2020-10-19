@@ -820,8 +820,8 @@ integer(kind=def) :: from, i, j, junk, lastcl, lastj, lj, nsubs, sp, substk(maxs
          endif
       elseif (arg(i) == closure .and. i > from) then
          lj = lastj
-         if(pat(lj)==bol .or. pat(lj)==eol .or. pat(lj)==closure .or. pat(lj-1) == boss .or. pat(lj-1) == eoss) then
-         !maybe?!if(pat(lj)==bol .or. pat(lj)==eol .or. pat(lj)==closure .or. pat(lj) == boss .or. pat(lj) == eoss) then
+         !!if(pat(lj)==bol .or. pat(lj)==eol .or. pat(lj)==closure .or. pat(lj-1) == boss .or. pat(lj-1) == eoss) then
+         if(pat(lj)==bol .or. pat(lj)==eol .or. pat(lj)==closure .or. pat(lj) == boss .or. pat(lj) == eoss) then
             exit
          endif
          lastcl = stclos(pat, j, lastj, lastcl)

@@ -7,6 +7,6 @@ copyright = "2020 John S. Urban"
 description = "Basic Regular Expressions"
 
 [[executable]]
-name="findmatch"
+name="seek"
 source-dir="app"
-main="findmatch.f90"
+main="seek.f90"

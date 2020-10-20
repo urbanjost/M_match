@@ -10,3 +10,8 @@ description = "Basic Regular Expressions"
 name="seek"
 source-dir="app"
 main="seek.f90"
+
+[[test]]
+name="test_suite_M_match"
+source-dir="test"
+main="test_suite_M_match.f90"

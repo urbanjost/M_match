@@ -57,3 +57,21 @@ integer             :: ios
    enddo INFINITE
 end program demo_m_match
 ```
+## SUPPORTS FPM
+
+   Alternatively, download the github repository and build it with
+   fpm ( as described at [Fortran Package Manager](https://github.com/fortran-lang/fpm) )
+
+   ```bash
+        git clone https://github.com/urbanjost/M_change.git
+        cd M_change
+        fpm build
+        fpm test
+   ```
+
+   or just list it as a dependency in your fpm.toml project file.
+
+```toml
+        [dependencies]
+        M_change        = { git = "https://github.com/urbanjost/M_change.git" }
+```

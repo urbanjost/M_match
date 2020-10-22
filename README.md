@@ -16,7 +16,7 @@ The original used different metacharacters than are commonly used today.
     >           -  specifies a range of characters in a set of characters.
     >           ^  negates the set if the first character inside a set of characters.
 
-This code functions, but a more complete (bye todays' expectations)
+This code functions, but a more complete (by todays' expectations)
 pure-Fortran implementation is planned.
 
 It is hoped this particular module will be useful primarily because it

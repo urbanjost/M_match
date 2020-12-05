@@ -311,22 +311,24 @@ end function addset
 !   "Software Tools" by Kernighan and Plauger , 1976
 ! LICENSE
 !   Public Domain
-subroutine dodash(array, i, set, j, maxset)
-
-character(len=*),parameter::ident_6="@(#)M_match::dodash expand array(i-1)-array(i+1) into set(j)..."
-
+!----------------------------------------------------------------------------------------------------------------------------------!
+!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
+!----------------------------------------------------------------------------------------------------------------------------------!
+! dodash - expand array(i-1)-array(i+1) into set(j)... from valid
+subroutine dodash(valid, array, i, set, j, maxset)
+integer(kind=def) ::  i, j, junk, k, limit, maxset
+character(len=*),intent(in) :: valid
 integer(kind=chr) :: array(:)
-integer(kind=def),intent(inout) :: i
 integer(kind=chr) :: set(:)
-integer(kind=def),intent(inout) :: j
-integer(kind=def) :: maxset
-integer(kind=def) :: junk, k, lim
-
+intrinsic char
    i = i + 1
    j = j - 1
-   lim = esc(array, i)
-   do k=set(j), lim
-      junk = addset(k, set, j, maxset)
+   limit = index(valid, char(esc(array, i)))
+   k=index(valid,char(set(j)))
+   do
+      if(.not. (k.le.limit)) exit
+      junk = addset(ichar(valid(k:k)), set, j, maxset)
+      k=k+1
    enddo
 end subroutine dodash
 !----------------------------------------------------------------------------------------------------------------------------------!
@@ -545,6 +547,9 @@ end function getccl
 !   "Software Tools" by Kernighan and Plauger , 1976
 ! LICENSE
 !   Public Domain
+!----------------------------------------------------------------------------------------------------------------------------------!
+!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
+!----------------------------------------------------------------------------------------------------------------------------------!
 subroutine filset(delim, array, i, set, j, maxset)
 
 character(len=*),parameter::ident_13="@(#)M_match::filset expand set at  array(i)  into  set(j),  stop at  delim"
@@ -552,6 +557,10 @@ character(len=*),parameter::ident_13="@(#)M_match::filset expand set at  array(i
 integer(kind=def) :: i, j, junk, maxset
 integer(kind=chr) :: array(:), delim, set(:)
 
+character(len=*),parameter :: digits= "0123456789"
+character(len=*),parameter :: lowalf= "abcdefghijklmnopqrstuvwxyz"
+character(len=*),parameter :: upalf= "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+intrinsic char
 
    !-  for ( ; array(i) /= delim .and. array(i) /= eos; i = i + 1)
    do while( array(i) /= delim .and. array(i) /= eos)
@@ -561,8 +570,14 @@ integer(kind=chr) :: array(:), delim, set(:)
          junk = addset(array(i), set, j, maxset)
       elseif (j <= 1 .or. array(i+1) == eos) then   ! literal -
          junk = addset(dash, set, j, maxset)
+      elseif (index(digits, char(set (j - 1))) > 0) then
+         call dodash(digits, array, i, set, j, maxset)
+     elseif (index(lowalf, char(set (j - 1))) > 0) then
+         call dodash(lowalf, array, i, set, j, maxset)
+      elseif (index(upalf, char(set (j - 1))) > 0) then
+         call dodash(upalf, array, i, set, j, maxset)
       else
-         call dodash(array, i, set, j, maxset)
+         junk = addset (DASH, set, j, maxset)
       endif
       i=i+1
    enddo
@@ -691,7 +706,7 @@ end function omatch_
 !    amatch_ - [M_match] - look for pattern matching regular expression; returns its location
 ! SYNOPSIS
 !       loc = amatch_ (line, from, pat, tagbeg, tagend)
-! 
+!
 !        character line(ARB), pat(MAXPAT)
 !        integer from
 !        integer tagbeg(10), tagend(10)
@@ -704,14 +719,14 @@ end function omatch_
 !        a  pattern which matches the regular expression coded in 'pat'.
 !        If the pattern is found, its starting location in line is
 !        returned. If the pattern is not found, amatch_(3f)  returns 0.
-! 
+!
 !        The regular expression in 'pat' must have been previously encoded
 !        by 'getpat_' or 'makpat_'. (For a complete description of regular
 !        expressions, see the writeup on the editor.)
-! 
+!
 !        amatch_(3f)  is a special-purpose version of match, which should
 !        be used in most cases.
-! 
+!
 ! OPTIONS
 ! RETURNS
 ! EXAMPLE

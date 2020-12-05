@@ -1,7 +1,7 @@
 program test_suite_M_change
 use, intrinsic :: iso_fortran_env, only : ERROR_UNIT
 use M_match,   only : getpat, match, regex_pattern
-use M_match,   only : YES, NO, ERR
+use M_match,   only : YES, ERR !, NO
 implicit none
 integer,parameter :: HT=9   ! horizontal tab
 logical,allocatable         :: TALLY(:)

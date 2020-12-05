@@ -14,6 +14,7 @@ The original used different metacharacters than are commonly used today.
     > @      \  escape next metacharacter
     > []        a set of characters. In a set of characters
     >           -  specifies a range of characters in a set of characters.
+                   Must be subsets of a-z, A-Z, or 0-9
     >           ^  negates the set if the first character inside a set of characters.
 
 This code functions, but a more complete (by todays' expectations)
@@ -27,8 +28,20 @@ can be accessed via an ISO_C_BINDING in modern Fortran compilers.
 ```bash
     git clone https://github.com/urbanjost/M_change.git
     cd M_calculator/src
-    # change Makefile if not using gfortran(1)
-    make
+    # change Makefile if not using one of the listed compilers
+     
+    # for gfortran
+    make clean
+    make F90=gfortran gfortran
+     
+    # for ifort
+    make clean
+    make F90=ifort ifort
+
+    # for nvfortran
+    make clean
+    make F90=nvfortran nvfortran
+
     # run simple example program
     PROGRAMS/findchange '%!' <M_change.f90
 ```

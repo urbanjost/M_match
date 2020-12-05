@@ -88,3 +88,17 @@ end program demo_m_match
         [dependencies]
         M_change        = { git = "https://github.com/urbanjost/M_change.git" }
 ```
+## PASSES TESTS
+```text
+Sat Dec  5 01:26:24 EST 2020
+
+GNU Fortran (GCC) 8.3.1 20191121 (Red Hat 8.3.1-5)
+Copyright (C) 2018 Free Software Foundation, Inc.
+
+ifort (IFORT) 19.1.3.304 20200925
+Copyright (C) 1985-2020 Intel Corporation.  All rights reserved.
+
+nvfortran 20.7-0 LLVM 64-bit target on x86-64 Linux -tp nehalem 
+NVIDIA Compilers and Tools
+Copyright (c) 2020, NVIDIA CORPORATION.  All rights reserved.
+```

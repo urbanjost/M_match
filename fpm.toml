@@ -1,5 +1,5 @@
 # TOML file for fpm as described at https://github.com/fortran-lang/fpm/blob/master/manifest-reference.md
-name = "M_change"
+name = "M_match"
 version = "0.1.0"
 license = "license"
 author = "John S. Urban"

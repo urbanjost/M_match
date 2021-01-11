@@ -1,4 +1,4 @@
-# M_change
+# M_match
 subset of Regular Expressions implemented in Fortran
 
 A basic implementation in Fortran of a subset of regular expressions as
@@ -26,7 +26,7 @@ as feature-rich as several common regex C libraries that, when available,
 can be accessed via an ISO_C_BINDING in modern Fortran compilers.
 
 ```bash
-    git clone https://github.com/urbanjost/M_change.git
+    git clone https://github.com/urbanjost/M_match.git
     cd M_calculator/src
     # change Makefile if not using one of the listed compilers
      
@@ -43,7 +43,7 @@ can be accessed via an ISO_C_BINDING in modern Fortran compilers.
     make F90=nvfortran nvfortran
 
     # run simple example program
-    PROGRAMS/findchange '%!' <M_change.f90
+    PROGRAMS/findchange '%!' <M_match.f90
 ```
 
 A simple example that creates a grep(1)-like filter program:
@@ -76,8 +76,8 @@ end program demo_m_match
    fpm ( as described at [Fortran Package Manager](https://github.com/fortran-lang/fpm) )
 
    ```bash
-        git clone https://github.com/urbanjost/M_change.git
-        cd M_change
+        git clone https://github.com/urbanjost/M_match.git
+        cd M_match
         fpm build
         fpm test
    ```
@@ -86,7 +86,7 @@ end program demo_m_match
 
 ```toml
         [dependencies]
-        M_change        = { git = "https://github.com/urbanjost/M_change.git" }
+        M_match        = { git = "https://github.com/urbanjost/M_match.git" }
 ```
 ## PASSES TESTS
 ```text

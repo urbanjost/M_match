@@ -1,4 +1,4 @@
-program test_suite_M_change
+program test_suite_M_match
 use, intrinsic :: iso_fortran_env, only : ERROR_UNIT
 use M_match,   only : getpat, match, regex_pattern
 use M_match,   only : YES, ERR !, NO
@@ -140,4 +140,4 @@ type(regex_pattern)         :: p
 
 end subroutine mymatch
 
-end program test_suite_M_change
+end program test_suite_M_match

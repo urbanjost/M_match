@@ -5,7 +5,8 @@ public :: getpat  !....... encode regular expression for pattern matching
 public :: match   !....... match pattern anywhere on line
 public :: amatch  !....... look for pattern matching regular expression
 public :: makpat  !....... encode regular expression for pattern matching
-public regex_pattern
+public :: regex_pattern
+public :: bpos, epos
 private :: omatch
 private :: error
 private :: addset
@@ -18,7 +19,7 @@ private :: filset
 private :: esc
 interface getpat;     module procedure getpat_, getpat__;           end interface
 interface makpat;     module procedure makpat_          ;           end interface
-interface amatch;     module procedure amatch_          ;           end interface
+interface amatch;     module procedure amatch_, amatch__;           end interface
 interface match;      module procedure match_,  match__ ;           end interface
 interface omatch;     module procedure omatch_          ;           end interface
 
@@ -790,6 +791,20 @@ integer(kind=def) :: from, i, j, offset, stack
    amatch_ = offset
    ! success
 end function amatch_
+!==================================================================================================================================!
+function amatch__(lin_str, from, pat)
+
+character(len=*),parameter::ident_9="@(#)M_match::amatch "
+
+character(len=*),intent(in) :: lin_str
+integer,intent(in) :: from
+integer(kind=def)  :: amatch__
+integer(kind=chr)  :: pat(maxpat)
+integer(kind=chr)  :: lin(maxline)
+   lin=f2r(lin_str,size(lin))
+   amatch__=amatch_(lin,from,pat)
+end function amatch__
+!----------------------------------------------------------------------------------------------------------------------------------!
 !----------------------------------------------------------------------------------------------------------------------------------!
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !----------------------------------------------------------------------------------------------------------------------------------!

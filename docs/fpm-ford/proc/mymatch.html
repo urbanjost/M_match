@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
    
-   <meta name="description" content="basic regular expressions">
-    
-    <meta name="author" content="John S. Urban" >
+    <meta name="description" content="Documentation for Fortran Program">
+   
+    <meta name="author" content="" >
     <link rel="icon" href="../favicon.png">
 
-    <title>mymatch &ndash; M_BRE</title>
+    <title>mymatch &ndash; Fortran Program</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -44,7 +44,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="../index.html">M_BRE </a>
+          <a class="navbar-brand" href="../index.html">Fortran Program </a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -170,20 +170,6 @@
 
 
 
-<div class="panel panel-primary">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-0">Variables</a></h3></div>
-  <div id="vars-0" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../proc/mymatch.html#variable-answer">answer</a>
-      
-      <a class="list-group-item" href="../proc/mymatch.html#variable-jj">jj</a>
-      
-      <a class="list-group-item" href="../proc/mymatch.html#variable-p">p</a>
-      
-    </div>
-  </div>
-</div>
 
 
 
@@ -202,15 +188,7 @@
 
 
 
-
-
-<div class="panel panel-primary">
-  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
-  <div class="list-group">
-    <a class="list-group-item" href="../proc/mymatch.html#src">mymatch</a>
-  </div>
-</div>
-
+<em>None</em>
 
 
 </div>
@@ -304,20 +282,6 @@ subroutine mymatch(expression, string, expected)
 
 
 
-<div class="panel panel-primary">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-1">Variables</a></h3></div>
-  <div id="vars-1" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../proc/mymatch.html#variable-answer">answer</a>
-      
-      <a class="list-group-item" href="../proc/mymatch.html#variable-jj">jj</a>
-      
-      <a class="list-group-item" href="../proc/mymatch.html#variable-p">p</a>
-      
-    </div>
-  </div>
-</div>
 
 
 
@@ -336,15 +300,7 @@ subroutine mymatch(expression, string, expected)
 
 
 
-
-
-<div class="panel panel-primary">
-  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
-  <div class="list-group">
-    <a class="list-group-item" href="../proc/mymatch.html#src">mymatch</a>
-  </div>
-</div>
-
+<em>None</em>
 
 
     </section>
@@ -353,66 +309,6 @@ subroutine mymatch(expression, string, expected)
     
 
     
-    <section>    
-      <h2>Variables</h2>
-    
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th><th>Visibility</th>
-
-<th>Attributes</th><th></th><th>Name</th><th></th><th>Initial</th><th></th></thead>
-
-
-
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-answer"></span>logical,</td>
-  
-  <td>public</td>
-  <td></td><td>::</td>
-  <td><strong>answer</strong></td><td></td><td></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-jj"></span>integer,</td>
-  
-  <td>public</td>
-  <td></td><td>::</td>
-  <td><strong>jj</strong></td><td></td><td></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-p"></span>type(<a href='../type/regex_pattern.html'>regex_pattern</a>),</td>
-  
-  <td>public</td>
-  <td></td><td>::</td>
-  <td><strong>p</strong></td><td></td><td></td><td></td>
-  
-</tr>
-
-</tbody>
-</table>
-
-    </section>
-    <br>
-    
     
     
     
@@ -427,33 +323,6 @@ subroutine mymatch(expression, string, expected)
 
     
     
-    
-    <section>
-    <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">mymatch</span><span class="p">(</span><span class="n">expression</span><span class="p">,</span><span class="n">string</span><span class="p">,</span><span class="n">expected</span><span class="p">)</span>
-<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">expression</span>
-<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">string</span>
-<span class="kt">logical</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>          <span class="kd">::</span> <span class="n">expected</span>
-<span class="kt">integer</span>                     <span class="kd">::</span> <span class="n">jj</span>
-<span class="kt">logical</span>                     <span class="kd">::</span> <span class="n">answer</span>
-<span class="k">type</span><span class="p">(</span><span class="n">regex_pattern</span><span class="p">)</span>         <span class="kd">::</span> <span class="n">p</span>
-   <span class="n">jj</span><span class="o">=</span><span class="n">getpat</span><span class="p">(</span><span class="n">expression</span><span class="p">,</span> <span class="n">p</span><span class="p">%</span><span class="n">pat</span><span class="p">)</span>
-   <span class="k">if</span><span class="p">(</span><span class="n">jj</span> <span class="p">.</span><span class="n">eq</span><span class="p">.</span> <span class="n">ERR</span><span class="p">)</span> <span class="k">then</span>
-<span class="k">      write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(*(g0,1x))&#39;</span><span class="p">).</span><span class="nb">not</span><span class="p">.</span><span class="n">expected</span><span class="p">,</span> <span class="s1">&#39;illegal pattern for regex&#39;</span><span class="p">,</span><span class="n">expression</span><span class="p">,</span> <span class="p">&amp;</span>
-      <span class="p">&amp;</span> <span class="s1">&#39;and string&#39;</span><span class="p">,</span><span class="n">string</span><span class="p">,</span><span class="s1">&#39;expected&#39;</span><span class="p">,</span><span class="n">expected</span><span class="p">,</span><span class="s1">&#39;getpat=&#39;</span><span class="p">,</span><span class="n">jj</span>
-      <span class="n">tally</span><span class="o">=</span><span class="p">[</span><span class="n">tally</span><span class="p">,.</span><span class="n">false</span><span class="p">.]</span>
-   <span class="k">else</span>
-<span class="k">      </span><span class="n">answer</span><span class="o">=</span><span class="n">match</span><span class="p">(</span><span class="n">string</span><span class="o">//</span><span class="nb">char</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span><span class="n">p</span><span class="p">%</span><span class="n">pat</span><span class="p">).</span><span class="n">eq</span><span class="p">.</span><span class="n">YES</span>
-      <span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(*(g0,1x))&#39;</span><span class="p">)</span> <span class="n">answer</span> <span class="p">.</span><span class="n">eqv</span><span class="p">.</span> <span class="n">expected</span><span class="p">,</span> <span class="s1">&#39;for regex&#39;</span><span class="p">,</span><span class="n">expression</span><span class="p">,</span><span class="s1">&#39;and string&#39;</span><span class="p">,</span><span class="n">string</span><span class="p">,</span> <span class="p">&amp;</span>
-      <span class="p">&amp;</span> <span class="s1">&#39;expected&#39;</span><span class="p">,</span><span class="n">expected</span><span class="p">,</span><span class="s1">&#39;got&#39;</span><span class="p">,</span><span class="n">answer</span><span class="p">,</span><span class="s1">&#39;getpat=&#39;</span><span class="p">,</span><span class="n">jj</span>
-      <span class="n">tally</span><span class="o">=</span><span class="p">[</span><span class="n">tally</span><span class="p">,</span><span class="n">answer</span><span class="p">.</span><span class="n">eqv</span><span class="p">.</span><span class="n">expected</span><span class="p">]</span>
-   <span class="k">endif</span>
-
-<span class="k">end subroutine </span><span class="n">mymatch</span>
-</pre></div>
-
-    </section>
-    <br>
     
     
     </div>
@@ -471,10 +340,10 @@ subroutine mymatch(expression, string, expected)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2021-09-17 20:41  
+            
           </p>
         </div>
-        <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> M_BRE was developed by John S. Urban</p></div>
+        <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> Fortran Program was developed by </p></div>
       </div>
       <br>
       </div> <!-- /container -->    

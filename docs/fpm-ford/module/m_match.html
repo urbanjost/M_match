@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
    
-   <meta name="description" content="basic regular expressions">
-    
-    <meta name="author" content="John S. Urban" >
+    <meta name="description" content="Documentation for Fortran Program">
+   
+    <meta name="author" content="" >
     <link rel="icon" href="../favicon.png">
 
-    <title>M_match &ndash; M_BRE</title>
+    <title>M_match &ndash; Fortran Program</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -44,7 +44,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="../index.html">M_BRE </a>
+          <a class="navbar-brand" href="../index.html">Fortran Program </a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -173,21 +173,21 @@
   <div id="vars-0" class="panel-collapse collapse">
     <div class="list-group">
       
-      <a class="list-group-item" href="../module/m_match.html#variable-blank">BLANK</a>
-      
       <a class="list-group-item" href="../module/m_match.html#variable-eos">EOS</a>
       
       <a class="list-group-item" href="../module/m_match.html#variable-err">ERR</a>
       
-      <a class="list-group-item" href="../module/m_match.html#variable-maxarg">MAXARG</a>
+      <a class="list-group-item" href="../module/m_match.html#variable-yes">YES</a>
+      
+      <a class="list-group-item" href="../module/m_match.html#variable-blank">BLANK</a>
       
       <a class="list-group-item" href="../module/m_match.html#variable-maxline">MAXLINE</a>
       
-      <a class="list-group-item" href="../module/m_match.html#variable-maxpat">MAXPAT</a>
-      
       <a class="list-group-item" href="../module/m_match.html#variable-no">NO</a>
       
-      <a class="list-group-item" href="../module/m_match.html#variable-yes">YES</a>
+      <a class="list-group-item" href="../module/m_match.html#variable-maxpat">MAXPAT</a>
+      
+      <a class="list-group-item" href="../module/m_match.html#variable-maxarg">MAXARG</a>
       
       <a class="list-group-item" href="../module/m_match.html#variable-bpos">bpos</a>
       
@@ -210,11 +210,11 @@
   <div id="inters-0" class="panel-collapse collapse">
     <div class="list-group">
       
-      <a class="list-group-item" href="../module/m_match.html#interface-amatch">amatch</a>
-      
       <a class="list-group-item" href="../module/m_match.html#interface-getpat">getpat</a>
       
       <a class="list-group-item" href="../module/m_match.html#interface-makpat">makpat</a>
+      
+      <a class="list-group-item" href="../module/m_match.html#interface-amatch">amatch</a>
       
       <a class="list-group-item" href="../module/m_match.html#interface-match">match</a>
       
@@ -274,21 +274,21 @@
   <div id="vars-1" class="panel-collapse collapse">
     <div class="list-group">
       
-      <a class="list-group-item" href="../module/m_match.html#variable-blank">BLANK</a>
-      
       <a class="list-group-item" href="../module/m_match.html#variable-eos">EOS</a>
       
       <a class="list-group-item" href="../module/m_match.html#variable-err">ERR</a>
       
-      <a class="list-group-item" href="../module/m_match.html#variable-maxarg">MAXARG</a>
+      <a class="list-group-item" href="../module/m_match.html#variable-yes">YES</a>
+      
+      <a class="list-group-item" href="../module/m_match.html#variable-blank">BLANK</a>
       
       <a class="list-group-item" href="../module/m_match.html#variable-maxline">MAXLINE</a>
       
-      <a class="list-group-item" href="../module/m_match.html#variable-maxpat">MAXPAT</a>
-      
       <a class="list-group-item" href="../module/m_match.html#variable-no">NO</a>
       
-      <a class="list-group-item" href="../module/m_match.html#variable-yes">YES</a>
+      <a class="list-group-item" href="../module/m_match.html#variable-maxpat">MAXPAT</a>
+      
+      <a class="list-group-item" href="../module/m_match.html#variable-maxarg">MAXARG</a>
       
       <a class="list-group-item" href="../module/m_match.html#variable-bpos">bpos</a>
       
@@ -311,11 +311,11 @@
   <div id="inters-1" class="panel-collapse collapse">
     <div class="list-group">
       
-      <a class="list-group-item" href="../module/m_match.html#interface-amatch">amatch</a>
-      
       <a class="list-group-item" href="../module/m_match.html#interface-getpat">getpat</a>
       
       <a class="list-group-item" href="../module/m_match.html#interface-makpat">makpat</a>
+      
+      <a class="list-group-item" href="../module/m_match.html#interface-amatch">amatch</a>
       
       <a class="list-group-item" href="../module/m_match.html#interface-match">match</a>
       
@@ -372,20 +372,6 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-blank"></span>integer(kind=byte),</td>
-  
-  <td>public,</td>
-  <td>parameter</td><td>::</td>
-  <td><strong>BLANK</strong></td><td> =</td><td>32_byte</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
   <td><span class="anchor" id="variable-eos"></span>integer(kind=byte),</td>
   
   <td>public,</td>
@@ -414,11 +400,25 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-maxarg"></span>integer(kind=byte),</td>
+  <td><span class="anchor" id="variable-yes"></span>integer(kind=byte),</td>
   
   <td>public,</td>
   <td>parameter</td><td>::</td>
-  <td><strong>MAXARG</strong></td><td> =</td><td>512</td><td></td>
+  <td><strong>YES</strong></td><td> =</td><td>1_byte</td><td><p>integer(kind=byte),parameter :: ARB=100_byte</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-blank"></span>integer(kind=byte),</td>
+  
+  <td>public,</td>
+  <td>parameter</td><td>::</td>
+  <td><strong>BLANK</strong></td><td> =</td><td>32_byte</td><td></td>
   
 </tr>
 
@@ -442,20 +442,6 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-maxpat"></span>integer(kind=byte),</td>
-  
-  <td>public,</td>
-  <td>parameter</td><td>::</td>
-  <td><strong>MAXPAT</strong></td><td> =</td><td>512</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
   <td><span class="anchor" id="variable-no"></span>integer(kind=byte),</td>
   
   <td>public,</td>
@@ -470,11 +456,25 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-yes"></span>integer(kind=byte),</td>
+  <td><span class="anchor" id="variable-maxpat"></span>integer(kind=byte),</td>
   
   <td>public,</td>
   <td>parameter</td><td>::</td>
-  <td><strong>YES</strong></td><td> =</td><td>1_byte</td><td><p>integer(kind=byte),parameter :: ARB=100_byte</p></td>
+  <td><strong>MAXPAT</strong></td><td> =</td><td>512</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-maxarg"></span>integer(kind=byte),</td>
+  
+  <td>public,</td>
+  <td>parameter</td><td>::</td>
+  <td><strong>MAXARG</strong></td><td> =</td><td>512</td><td></td>
   
 </tr>
 
@@ -519,195 +519,6 @@
     <section>
    <h2>Interfaces</h2>
    
-     
-<div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="interface-amatch"></span><h3>public interface <a href='../interface/amatch.html'>amatch</a>
-    
-  </h3></div>
-  
-  <ul class="list-group">
-  
-  
-  
-    <li class="list-group-item">
-    
-    
-    <h3>
-private function amatch_(lin, from, pat)
-    
-    
-   
-</h3>
-    
-    
-    <h4>Arguments</h4>
-    
-      
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer(kind=chr)</td>
-  <td></td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>lin</strong>(maxline)</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer(kind=def)</td>
-  <td></td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>from</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer(kind=chr)</td>
-  <td></td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>pat</strong>(maxpat)</td><td></td>
-  
-</tr>
-
-</tbody>
-</table>
-
-      
-    
-    
-
-  
-  
-  
-  
-     <h4>Return Value <small>integer(kind=def)
-  </small></h4>
-  
-    
-
-    </li>
-  
-    <li class="list-group-item">
-    
-    
-    <h3>
-private function amatch__(lin_str, from, pat)
-    
-    
-   
-</h3>
-    
-    
-    <h4>Arguments</h4>
-    
-      
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>character(len=*),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>lin_str</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>from</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer(kind=chr)</td>
-  <td></td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>pat</strong>(maxpat)</td><td></td>
-  
-</tr>
-
-</tbody>
-</table>
-
-      
-    
-    
-
-  
-  
-  
-  
-     <h4>Return Value <small>integer(kind=def)
-  </small></h4>
-  
-    
-
-    </li>
-  
-  
-  </ul>
-</div>
-
-    
      
 <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="interface-getpat"></span><h3>public interface <a href='../interface/getpat.html'>getpat</a>
@@ -990,6 +801,195 @@ private function makpat_(arg, from, delim, pat)
     
      
 <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="interface-amatch"></span><h3>public interface <a href='../interface/amatch.html'>amatch</a>
+    
+  </h3></div>
+  
+  <ul class="list-group">
+  
+  
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+private function amatch_(lin, from, pat)
+    
+    
+   
+</h3>
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer(kind=chr)</td>
+  <td></td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>lin</strong>(maxline)</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer(kind=def)</td>
+  <td></td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>from</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer(kind=chr)</td>
+  <td></td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>pat</strong>(maxpat)</td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>integer(kind=def)
+  </small></h4>
+  
+    
+
+    </li>
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+private function amatch__(lin_str, from, pat)
+    
+    
+   
+</h3>
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>lin_str</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>from</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer(kind=chr)</td>
+  <td></td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>pat</strong>(maxpat)</td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>integer(kind=def)
+  </small></h4>
+  
+    
+
+    </li>
+  
+  
+  </ul>
+</div>
+
+    
+     
+<div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="interface-match"></span><h3>public interface <a href='../interface/match.html'>match</a>
     
   </h3></div>
@@ -1225,10 +1225,10 @@ private function match__(lin_str, pat)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2021-09-17 20:41  
+            
           </p>
         </div>
-        <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> M_BRE was developed by John S. Urban</p></div>
+        <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> Fortran Program was developed by </p></div>
       </div>
       <br>
       </div> <!-- /container -->    

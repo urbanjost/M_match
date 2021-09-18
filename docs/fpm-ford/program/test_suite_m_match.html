@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
    
-   <meta name="description" content="basic regular expressions">
-    
-    <meta name="author" content="John S. Urban" >
+    <meta name="description" content="Documentation for Fortran Program">
+   
+    <meta name="author" content="" >
     <link rel="icon" href="../favicon.png">
 
-    <title>test_suite_M_match &ndash; M_BRE</title>
+    <title>test_suite_M_match &ndash; Fortran Program</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -44,7 +44,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="../index.html">M_BRE </a>
+          <a class="navbar-brand" href="../index.html">Fortran Program </a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -212,14 +212,6 @@
 
 
 
-<div class="panel panel-primary">
-  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
-  <div class="list-group">
-    <a class="list-group-item" href="../program/test_suite_m_match.html#src">test_suite_M_match</a>
-  </div>
-</div>
-
-
 
 </div>
 
@@ -237,7 +229,7 @@
       <li class="list-group-item">
   <ul class="list-inline">
     
-    <li><a href="https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fFORTRAN_005fENV.html">iso_fortran_env</a></li>
+    <li><a href="http://fortranwiki.org/fortran/show/ISO_FORTRAN_ENV">iso_fortran_env</a></li>
     
     <li><a href='../module/m_match.html'>M_match</a></li>
     
@@ -252,7 +244,7 @@
     </div>
     
 
-    <p>call mymatch(&ldquo;F[qpo&rdquo;, &ldquo;FooBar&rdquo;, .false.) ! intentional bad regex </p>
+    <p>call mymatch("F[qpo", "FooBar", .false.) ! intentional bad regex </p>
     
     <br>
 
@@ -305,14 +297,6 @@
 
 
 
-
-
-<div class="panel panel-primary">
-  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
-  <div class="list-group">
-    <a class="list-group-item" href="../program/test_suite_m_match.html#src">test_suite_M_match</a>
-  </div>
-</div>
 
 
 
@@ -469,155 +453,6 @@ subroutine <a href='../proc/mymatch.html'>mymatch</a>(expression, string, expect
     
     
     
-    <section>
-    <h2 id="src">Source Code</h2>
-    <div class="highlight"><pre><span></span><span class="k">program </span><span class="n">test_suite_M_match</span>
-<span class="k">use</span><span class="p">,</span> <span class="k">intrinsic</span> <span class="kd">::</span> <span class="n">iso_fortran_env</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">ERROR_UNIT</span>
-<span class="k">use </span><span class="n">M_match</span><span class="p">,</span>   <span class="k">only</span> <span class="p">:</span> <span class="n">getpat</span><span class="p">,</span> <span class="n">match</span><span class="p">,</span> <span class="n">regex_pattern</span>
-<span class="k">use </span><span class="n">M_match</span><span class="p">,</span>   <span class="k">only</span> <span class="p">:</span> <span class="n">YES</span><span class="p">,</span> <span class="n">ERR</span> <span class="c">!, NO</span>
-<span class="k">implicit none</span>
-<span class="kt">integer</span><span class="p">,</span><span class="k">parameter</span> <span class="kd">::</span> <span class="n">HT</span><span class="o">=</span><span class="mi">9</span>   <span class="c">! horizontal tab</span>
-<span class="kt">logical</span><span class="p">,</span><span class="k">allocatable</span>         <span class="kd">::</span> <span class="n">TALLY</span><span class="p">(:)</span>
-
-<span class="k">allocate</span><span class="p">(</span><span class="n">tally</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
-<span class="c">!    mymatch(&quot;regexp&quot;,     &quot;String&quot;,        expected result )</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;Foo&quot;</span><span class="p">,</span>        <span class="s2">&quot;FooBar&quot;</span><span class="p">,</span>        <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;Poo&quot;</span><span class="p">,</span>        <span class="s2">&quot;FooBar&quot;</span><span class="p">,</span>        <span class="p">.</span><span class="n">false</span><span class="p">.</span>  <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;Bar&quot;</span><span class="p">,</span>        <span class="s2">&quot;FooBar&quot;</span><span class="p">,</span>        <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;Par&quot;</span><span class="p">,</span>        <span class="s2">&quot;FooBar&quot;</span><span class="p">,</span>        <span class="p">.</span><span class="n">false</span><span class="p">.</span>  <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;Foo&quot;</span><span class="p">,</span>        <span class="s2">&quot;Foo&quot;</span><span class="p">,</span>           <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;Fo&quot;</span><span class="p">,</span>         <span class="s2">&quot;Foo&quot;</span><span class="p">,</span>           <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;Foo&quot;</span><span class="p">,</span>        <span class="s2">&quot;Fo&quot;</span><span class="p">,</span>            <span class="p">.</span><span class="n">false</span><span class="p">.</span>  <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;ooB&quot;</span><span class="p">,</span>        <span class="s2">&quot;FooBar&quot;</span><span class="p">,</span>        <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;ooP&quot;</span><span class="p">,</span>        <span class="s2">&quot;FooBar&quot;</span><span class="p">,</span>        <span class="p">.</span><span class="n">false</span><span class="p">.</span>  <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span>          <span class="s2">&quot;FooBar&quot;</span><span class="p">,</span>        <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;P.&quot;</span><span class="p">,</span>         <span class="s2">&quot;FooBar&quot;</span><span class="p">,</span>        <span class="p">.</span><span class="n">false</span><span class="p">.</span>  <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;^Foo&quot;</span><span class="p">,</span>       <span class="s2">&quot;FooBar&quot;</span><span class="p">,</span>        <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;^Bar&quot;</span><span class="p">,</span>       <span class="s2">&quot;FooBar&quot;</span><span class="p">,</span>        <span class="p">.</span><span class="n">false</span><span class="p">.</span>  <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;Foo$&quot;</span><span class="p">,</span>       <span class="s2">&quot;FooBar&quot;</span><span class="p">,</span>        <span class="p">.</span><span class="n">false</span><span class="p">.</span>  <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;Bar$&quot;</span><span class="p">,</span>       <span class="s2">&quot;FooBar&quot;</span><span class="p">,</span>        <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;.*o&quot;</span><span class="p">,</span>        <span class="s2">&quot;FooBar&quot;</span><span class="p">,</span>        <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;o*o&quot;</span><span class="p">,</span>        <span class="s2">&quot;FooBar&quot;</span><span class="p">,</span>        <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;P*o&quot;</span><span class="p">,</span>        <span class="s2">&quot;FooBar&quot;</span><span class="p">,</span>        <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;Fo*o&quot;</span><span class="p">,</span>       <span class="s2">&quot;FooBar&quot;</span><span class="p">,</span>        <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;Po*o&quot;</span><span class="p">,</span>       <span class="s2">&quot;FooBar&quot;</span><span class="p">,</span>        <span class="p">.</span><span class="n">false</span><span class="p">.</span>  <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;F[po]o&quot;</span><span class="p">,</span>     <span class="s2">&quot;FooBar&quot;</span><span class="p">,</span>        <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;F[op]o&quot;</span><span class="p">,</span>     <span class="s2">&quot;FooBar&quot;</span><span class="p">,</span>        <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;F[qp]o&quot;</span><span class="p">,</span>     <span class="s2">&quot;FooBar&quot;</span><span class="p">,</span>        <span class="p">.</span><span class="n">false</span><span class="p">.</span>  <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;F[^po]o&quot;</span><span class="p">,</span>    <span class="s2">&quot;FooBar&quot;</span><span class="p">,</span>        <span class="p">.</span><span class="n">false</span><span class="p">.</span>  <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;F[^op]o&quot;</span><span class="p">,</span>    <span class="s2">&quot;FooBar&quot;</span><span class="p">,</span>        <span class="p">.</span><span class="n">false</span><span class="p">.</span>  <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;F[^qp]o&quot;</span><span class="p">,</span>    <span class="s2">&quot;FooBar&quot;</span><span class="p">,</span>        <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;F[po]*o&quot;</span><span class="p">,</span>    <span class="s2">&quot;FooBar&quot;</span><span class="p">,</span>        <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;F[56]*o&quot;</span><span class="p">,</span>    <span class="s2">&quot;F5oBar&quot;</span><span class="p">,</span>        <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;F[46]*o&quot;</span><span class="p">,</span>    <span class="s2">&quot;F5oBar&quot;</span><span class="p">,</span>        <span class="p">.</span><span class="n">false</span><span class="p">.</span>  <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;F[46]*5&quot;</span><span class="p">,</span>    <span class="s2">&quot;F5oBar&quot;</span><span class="p">,</span>        <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;F[46]*5o&quot;</span><span class="p">,</span>   <span class="s2">&quot;F5oBar&quot;</span><span class="p">,</span>        <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;F[op]*o&quot;</span><span class="p">,</span>    <span class="s2">&quot;FooBar&quot;</span><span class="p">,</span>        <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;F[qp]*o&quot;</span><span class="p">,</span>    <span class="s2">&quot;FooBar&quot;</span><span class="p">,</span>        <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;P[qp]*o&quot;</span><span class="p">,</span>    <span class="s2">&quot;FooBar&quot;</span><span class="p">,</span>        <span class="p">.</span><span class="n">false</span><span class="p">.</span>  <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;F[^po]*o&quot;</span><span class="p">,</span>   <span class="s2">&quot;FooBar&quot;</span><span class="p">,</span>        <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;F[^op]*o&quot;</span><span class="p">,</span>   <span class="s2">&quot;FooBar&quot;</span><span class="p">,</span>        <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;F[^qp]*o&quot;</span><span class="p">,</span>   <span class="s2">&quot;FooBar&quot;</span><span class="p">,</span>        <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;P[^qp]*o&quot;</span><span class="p">,</span>   <span class="s2">&quot;FooBar&quot;</span><span class="p">,</span>        <span class="p">.</span><span class="n">false</span><span class="p">.</span>  <span class="p">)</span>
-
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;[0-9][0-9]*$&quot;</span><span class="p">,</span>  <span class="s2">&quot;0123456789&quot;</span><span class="p">,</span>  <span class="p">.</span><span class="n">true</span><span class="p">.</span>  <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;[0-9][0-9]*$&quot;</span><span class="p">,</span>  <span class="s2">&quot;A0123456789&quot;</span><span class="p">,</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>  <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;^[0-9][0-9]*$&quot;</span><span class="p">,</span> <span class="s2">&quot;A0123456789&quot;</span><span class="p">,</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span> <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;^[0-9][0-9]*$&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>            <span class="p">.</span><span class="n">false</span><span class="p">.</span> <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;^[0-9]$&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>                  <span class="p">.</span><span class="n">false</span><span class="p">.</span> <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;^[0-9]*$&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>                 <span class="p">.</span><span class="n">true</span><span class="p">.</span>  <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;^$&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>                        <span class="p">.</span><span class="n">true</span><span class="p">.</span> <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;^$&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">,</span>                       <span class="p">.</span><span class="n">false</span><span class="p">.)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;^[A-Z ][A-Z ]*$&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>          <span class="p">.</span><span class="n">false</span><span class="p">.</span> <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;^[ ]*[A-Z][A-Z ]*$&quot;</span><span class="p">,</span> <span class="s2">&quot; THIS IS ALL UPPERCASE&quot;</span><span class="p">,</span>    <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;^[ ]*[a-z][a-z ]*$&quot;</span><span class="p">,</span> <span class="s2">&quot; this is all lowercase&quot;</span><span class="p">,</span>    <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;^[ ]*[A-Z][A-Z ]*$&quot;</span><span class="p">,</span> <span class="s2">&quot; THIS IS not ALL UPPERCASE&quot;</span><span class="p">,</span>    <span class="p">.</span><span class="n">false</span><span class="p">.</span>  <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;^[ ]*[a-z][a-z ]*$&quot;</span><span class="p">,</span> <span class="s2">&quot; this is NOT all lowercase&quot;</span><span class="p">,</span>    <span class="p">.</span><span class="n">false</span><span class="p">.</span>  <span class="p">)</span>
-
-<span class="c">! check dash in character class at beginning and end instead of in range</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;X[-+]Y&quot;</span><span class="p">,</span> <span class="s2">&quot;X-Y&quot;</span><span class="p">,</span>                        <span class="p">.</span><span class="n">true</span><span class="p">.</span> <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;X[-+]Y&quot;</span><span class="p">,</span> <span class="s2">&quot;X+Y&quot;</span><span class="p">,</span>                        <span class="p">.</span><span class="n">true</span><span class="p">.</span> <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;X[+-]Y&quot;</span><span class="p">,</span> <span class="s2">&quot;X-Y&quot;</span><span class="p">,</span>                        <span class="p">.</span><span class="n">true</span><span class="p">.</span> <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;X[+-]Y&quot;</span><span class="p">,</span> <span class="s2">&quot;X+Y&quot;</span><span class="p">,</span>                        <span class="p">.</span><span class="n">true</span><span class="p">.</span> <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;X[-+]Y&quot;</span><span class="p">,</span> <span class="s2">&quot;Y-X&quot;</span><span class="p">,</span>                        <span class="p">.</span><span class="n">false</span><span class="p">.</span> <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;X[-+]Y&quot;</span><span class="p">,</span> <span class="s2">&quot;Y+X&quot;</span><span class="p">,</span>                        <span class="p">.</span><span class="n">false</span><span class="p">.</span> <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;X[+-]Y&quot;</span><span class="p">,</span> <span class="s2">&quot;Y-X&quot;</span><span class="p">,</span>                        <span class="p">.</span><span class="n">false</span><span class="p">.</span> <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;X[+-]Y&quot;</span><span class="p">,</span> <span class="s2">&quot;Y+X&quot;</span><span class="p">,</span>                        <span class="p">.</span><span class="n">false</span><span class="p">.</span> <span class="p">)</span>
-<span class="c">! tabs</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;X\tY&quot;</span><span class="p">,</span> <span class="s2">&quot;X&quot;</span><span class="o">//</span><span class="nb">char</span><span class="p">(</span><span class="n">HT</span><span class="p">)</span><span class="o">//</span><span class="s2">&quot;Y&quot;</span><span class="p">,</span>             <span class="p">.</span><span class="n">true</span><span class="p">.</span> <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;X[\tab]Y&quot;</span><span class="p">,</span> <span class="s2">&quot;X&quot;</span><span class="o">//</span><span class="nb">char</span><span class="p">(</span><span class="n">HT</span><span class="p">)</span><span class="o">//</span><span class="s2">&quot;Y&quot;</span><span class="p">,</span>         <span class="p">.</span><span class="n">true</span><span class="p">.</span> <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;X[\tab]Y&quot;</span><span class="p">,</span> <span class="s2">&quot;XtY&quot;</span><span class="p">,</span>                      <span class="p">.</span><span class="n">false</span><span class="p">.</span> <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;X[\tab]Y&quot;</span><span class="p">,</span> <span class="s2">&quot;XaY&quot;</span><span class="p">,</span>                      <span class="p">.</span><span class="n">true</span><span class="p">.</span> <span class="p">)</span>
-
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;[0-9][0-9]*\.[0-9]*&quot;</span><span class="p">,</span>   <span class="s2">&quot;1.9&quot;</span><span class="p">,</span>           <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;[0-9][0-9]*\.[0-9]*&quot;</span><span class="p">,</span>   <span class="s2">&quot;1.99&quot;</span><span class="p">,</span>          <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;[0-9][0-9]*\.[0-9]*&quot;</span><span class="p">,</span>   <span class="s2">&quot;1.999&quot;</span><span class="p">,</span>         <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;[0-9][0-9]*\.[0-9]*&quot;</span><span class="p">,</span>   <span class="s2">&quot;1.9999&quot;</span><span class="p">,</span>        <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;[0-9][0-9]*\.[0-9]*&quot;</span><span class="p">,</span>   <span class="s2">&quot;1.99999&quot;</span><span class="p">,</span>       <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;[0-9][0-9]*\.[0-9]*&quot;</span><span class="p">,</span>   <span class="s2">&quot;11.99999&quot;</span><span class="p">,</span>      <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;[0-9][0-9]*\.[0-9]*&quot;</span><span class="p">,</span>   <span class="s2">&quot;111.99999&quot;</span><span class="p">,</span>     <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;[0-9][0-9]*\.[0-9]*&quot;</span><span class="p">,</span>   <span class="s2">&quot;1111.99999&quot;</span><span class="p">,</span>    <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;[0-9][0-9]*\.[0-9]*&quot;</span><span class="p">,</span>   <span class="s2">&quot;11111.99999&quot;</span><span class="p">,</span>   <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;[0-9][0-9]*\.[0-9]*&quot;</span><span class="p">,</span>   <span class="s2">&quot;123456.99999&quot;</span><span class="p">,</span>  <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;^[0-9][0-9]*\.[0-9]*&quot;</span><span class="p">,</span>  <span class="s2">&quot;1.9&quot;</span><span class="p">,</span>           <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;^[0-9][0-9]*\.[0-9]*&quot;</span><span class="p">,</span>  <span class="s2">&quot;1.99&quot;</span><span class="p">,</span>          <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;^[0-9][0-9]*\.[0-9]*&quot;</span><span class="p">,</span>  <span class="s2">&quot;1.999&quot;</span><span class="p">,</span>         <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;^[0-9][0-9]*\.[0-9]*&quot;</span><span class="p">,</span>  <span class="s2">&quot;1.9999&quot;</span><span class="p">,</span>        <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;^[0-9][0-9]*\.[0-9]*&quot;</span><span class="p">,</span>  <span class="s2">&quot;1.99999&quot;</span><span class="p">,</span>       <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;^[0-9][0-9]*\.[0-9]*&quot;</span><span class="p">,</span>  <span class="s2">&quot;11.99999&quot;</span><span class="p">,</span>      <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;^[0-9][0-9]*\.[0-9]*&quot;</span><span class="p">,</span>  <span class="s2">&quot;111.99999&quot;</span><span class="p">,</span>     <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;^[0-9][0-9]*\.[0-9]*&quot;</span><span class="p">,</span>  <span class="s2">&quot;1111.99999&quot;</span><span class="p">,</span>    <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;^[0-9][0-9]*\.[0-9]*&quot;</span><span class="p">,</span>  <span class="s2">&quot;11111.99999&quot;</span><span class="p">,</span>   <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;^[0-9][0-9]*\.[0-9]*&quot;</span><span class="p">,</span>  <span class="s2">&quot;111111.99999&quot;</span><span class="p">,</span>  <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;a[0-9][0-9]*\.[0-9]*&quot;</span><span class="p">,</span>  <span class="s2">&quot;a1.9&quot;</span><span class="p">,</span>          <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;a[0-9][0-9]*\.&quot;</span><span class="p">,</span>        <span class="s2">&quot;a1.9&quot;</span><span class="p">,</span>          <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;a[0-9][0-9]*&quot;</span><span class="p">,</span>          <span class="s2">&quot;a1.9&quot;</span><span class="p">,</span>          <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span>                <span class="s2">&quot;a1.9&quot;</span><span class="p">,</span>          <span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="p">)</span>
-<span class="k">call </span><span class="n">mymatch</span><span class="p">(</span><span class="s2">&quot;\\&quot;</span><span class="p">,</span>               <span class="s2">&quot;\&quot;,             .true.   )</span>
-<span class="s2">call mymatch(&quot;</span><span class="err">\</span><span class="p">.</span><span class="s2">&quot;,               &quot;</span><span class="err">\</span><span class="s2">&quot;,             .false.  )</span>
-<span class="s2">call mymatch(&quot;</span><span class="p">.</span><span class="s2">&quot;,                &quot;</span><span class="err">\</span><span class="s2">&quot;,             .true.   )</span>
-<span class="s2">! this version closes the set -- it really should complain</span>
-<span class="s2">!!call mymatch(&quot;</span><span class="n">F</span><span class="p">[</span><span class="n">qpo</span><span class="s2">&quot;, &quot;</span><span class="n">FooBar</span><span class="s2">&quot;, .false.) ! intentional bad regex </span>
-<span class="s2">call mymatch(&quot;</span><span class="n">F</span><span class="p">[</span><span class="n">qpo</span><span class="s2">&quot;, &quot;</span><span class="n">FooBar</span><span class="err">&quot;</span><span class="p">,</span> <span class="p">.</span><span class="n">true</span><span class="p">.)</span> <span class="c">! intentional bad regex </span>
-
-
-<span class="c">! write up total results and if anything failed exit with a non-zero status</span>
-<span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(*(g0))&#39;</span><span class="p">)</span><span class="s1">&#39;TALLY;&#39;</span><span class="p">,</span><span class="n">tally</span>
-<span class="k">if</span><span class="p">(</span><span class="k">all</span><span class="p">(</span><span class="n">tally</span><span class="p">))</span><span class="k">then</span>
-<span class="k">   write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(*(g0))&#39;</span><span class="p">)</span><span class="s1">&#39;PASSED: all &#39;</span><span class="p">,</span><span class="nb">count</span><span class="p">(</span><span class="n">tally</span><span class="p">),</span><span class="s1">&#39; tests passed &#39;</span>
-<span class="k">else</span>
-<span class="k">   write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;FAILED: PASSED=&#39;</span><span class="p">,</span><span class="nb">count</span><span class="p">(</span><span class="n">tally</span><span class="p">),</span><span class="s1">&#39; FAILED=&#39;</span><span class="p">,</span><span class="nb">count</span><span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">tally</span><span class="p">)</span>
-   <span class="k">stop </span><span class="mi">4</span>
-<span class="k">endif</span>
-
-<span class="k">contains</span>
-
-<span class="k">subroutine </span><span class="n">mymatch</span><span class="p">(</span><span class="n">expression</span><span class="p">,</span><span class="n">string</span><span class="p">,</span><span class="n">expected</span><span class="p">)</span>
-<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">expression</span>
-<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">string</span>
-<span class="kt">logical</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>          <span class="kd">::</span> <span class="n">expected</span>
-<span class="kt">integer</span>                     <span class="kd">::</span> <span class="n">jj</span>
-<span class="kt">logical</span>                     <span class="kd">::</span> <span class="n">answer</span>
-<span class="k">type</span><span class="p">(</span><span class="n">regex_pattern</span><span class="p">)</span>         <span class="kd">::</span> <span class="n">p</span>
-   <span class="n">jj</span><span class="o">=</span><span class="n">getpat</span><span class="p">(</span><span class="n">expression</span><span class="p">,</span> <span class="n">p</span><span class="p">%</span><span class="n">pat</span><span class="p">)</span>
-   <span class="k">if</span><span class="p">(</span><span class="n">jj</span> <span class="p">.</span><span class="n">eq</span><span class="p">.</span> <span class="n">ERR</span><span class="p">)</span> <span class="k">then</span>
-<span class="k">      write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(*(g0,1x))&#39;</span><span class="p">).</span><span class="nb">not</span><span class="p">.</span><span class="n">expected</span><span class="p">,</span> <span class="s1">&#39;illegal pattern for regex&#39;</span><span class="p">,</span><span class="n">expression</span><span class="p">,</span> <span class="p">&amp;</span>
-      <span class="p">&amp;</span> <span class="s1">&#39;and string&#39;</span><span class="p">,</span><span class="n">string</span><span class="p">,</span><span class="s1">&#39;expected&#39;</span><span class="p">,</span><span class="n">expected</span><span class="p">,</span><span class="s1">&#39;getpat=&#39;</span><span class="p">,</span><span class="n">jj</span>
-      <span class="n">tally</span><span class="o">=</span><span class="p">[</span><span class="n">tally</span><span class="p">,.</span><span class="n">false</span><span class="p">.]</span>
-   <span class="k">else</span>
-<span class="k">      </span><span class="n">answer</span><span class="o">=</span><span class="n">match</span><span class="p">(</span><span class="n">string</span><span class="o">//</span><span class="nb">char</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span><span class="n">p</span><span class="p">%</span><span class="n">pat</span><span class="p">).</span><span class="n">eq</span><span class="p">.</span><span class="n">YES</span>
-      <span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(*(g0,1x))&#39;</span><span class="p">)</span> <span class="n">answer</span> <span class="p">.</span><span class="n">eqv</span><span class="p">.</span> <span class="n">expected</span><span class="p">,</span> <span class="s1">&#39;for regex&#39;</span><span class="p">,</span><span class="n">expression</span><span class="p">,</span><span class="s1">&#39;and string&#39;</span><span class="p">,</span><span class="n">string</span><span class="p">,</span> <span class="p">&amp;</span>
-      <span class="p">&amp;</span> <span class="s1">&#39;expected&#39;</span><span class="p">,</span><span class="n">expected</span><span class="p">,</span><span class="s1">&#39;got&#39;</span><span class="p">,</span><span class="n">answer</span><span class="p">,</span><span class="s1">&#39;getpat=&#39;</span><span class="p">,</span><span class="n">jj</span>
-      <span class="n">tally</span><span class="o">=</span><span class="p">[</span><span class="n">tally</span><span class="p">,</span><span class="n">answer</span><span class="p">.</span><span class="n">eqv</span><span class="p">.</span><span class="n">expected</span><span class="p">]</span>
-   <span class="k">endif</span>
-
-<span class="k">end subroutine </span><span class="n">mymatch</span>
-
-<span class="k">end program </span><span class="n">test_suite_M_match</span>
-</pre></div>
-
-    </section>
-    
     
     </div>
   </div>
@@ -634,10 +469,10 @@ subroutine <a href='../proc/mymatch.html'>mymatch</a>(expression, string, expect
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2021-09-17 20:41  
+            
           </p>
         </div>
-        <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> M_BRE was developed by John S. Urban</p></div>
+        <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> Fortran Program was developed by </p></div>
       </div>
       <br>
       </div> <!-- /container -->    

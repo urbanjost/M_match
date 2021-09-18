@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
    
-   <meta name="description" content="basic regular expressions">
-    
-    <meta name="author" content="John S. Urban" >
+    <meta name="description" content="Documentation for Fortran Program">
+   
+    <meta name="author" content="" >
     <link rel="icon" href="../favicon.png">
 
-    <title>demo_m_match &ndash; M_BRE</title>
+    <title>demo_m_match &ndash; Fortran Program</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -44,7 +44,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="../index.html">M_BRE </a>
+          <a class="navbar-brand" href="../index.html">Fortran Program </a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -173,13 +173,13 @@
   <div id="vars-0" class="panel-collapse collapse">
     <div class="list-group">
       
-      <a class="list-group-item" href="../program/demo_m_match.html#variable-argument">argument</a>
-      
-      <a class="list-group-item" href="../program/demo_m_match.html#variable-ios">ios</a>
-      
       <a class="list-group-item" href="../program/demo_m_match.html#variable-line">line</a>
       
-      <a class="list-group-item" href="../program/demo_m_match.html#variable-p~2">p</a>
+      <a class="list-group-item" href="../program/demo_m_match.html#variable-argument">argument</a>
+      
+      <a class="list-group-item" href="../program/demo_m_match.html#variable-p">p</a>
+      
+      <a class="list-group-item" href="../program/demo_m_match.html#variable-ios">ios</a>
       
     </div>
   </div>
@@ -202,14 +202,6 @@
 
 
 
-
-
-<div class="panel panel-primary">
-  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
-  <div class="list-group">
-    <a class="list-group-item" href="../program/demo_m_match.html#src">demo_m_match</a>
-  </div>
-</div>
 
 
 
@@ -258,13 +250,13 @@
   <div id="vars-1" class="panel-collapse collapse">
     <div class="list-group">
       
-      <a class="list-group-item" href="../program/demo_m_match.html#variable-argument">argument</a>
-      
-      <a class="list-group-item" href="../program/demo_m_match.html#variable-ios">ios</a>
-      
       <a class="list-group-item" href="../program/demo_m_match.html#variable-line">line</a>
       
-      <a class="list-group-item" href="../program/demo_m_match.html#variable-p~2">p</a>
+      <a class="list-group-item" href="../program/demo_m_match.html#variable-argument">argument</a>
+      
+      <a class="list-group-item" href="../program/demo_m_match.html#variable-p">p</a>
+      
+      <a class="list-group-item" href="../program/demo_m_match.html#variable-ios">ios</a>
       
     </div>
   </div>
@@ -287,14 +279,6 @@
 
 
 
-
-
-<div class="panel panel-primary">
-  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
-  <div class="list-group">
-    <a class="list-group-item" href="../program/demo_m_match.html#src">demo_m_match</a>
-  </div>
-</div>
 
 
 
@@ -322,34 +306,6 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-argument"></span>character(len=1024)</td>
-  
-  
-  <td></td><td>::</td>
-  <td><strong>argument</strong></td><td> =</td><td>''</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-ios"></span>integer</td>
-  
-  
-  <td></td><td>::</td>
-  <td><strong>ios</strong></td><td></td><td></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
   <td><span class="anchor" id="variable-line"></span>character(len=1024)</td>
   
   
@@ -364,11 +320,39 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-p~2"></span>type(<a href='../type/regex_pattern.html'>regex_pattern</a>)</td>
+  <td><span class="anchor" id="variable-argument"></span>character(len=1024)</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>argument</strong></td><td> =</td><td>''</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-p"></span>type(<a href='../type/regex_pattern.html'>regex_pattern</a>)</td>
   
   
   <td></td><td>::</td>
   <td><strong>p</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-ios"></span>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>ios</strong></td><td></td><td></td><td></td>
   
 </tr>
 
@@ -393,32 +377,6 @@
     
     
     
-    <section>
-    <h2 id="src">Source Code</h2>
-    <div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_m_match</span>
-<span class="k">use </span><span class="n">M_match</span><span class="p">,</span>   <span class="k">only</span> <span class="p">:</span> <span class="n">getpat</span><span class="p">,</span> <span class="n">match</span><span class="p">,</span> <span class="n">regex_pattern</span>
-<span class="k">use </span><span class="n">M_match</span><span class="p">,</span>   <span class="k">only</span> <span class="p">:</span> <span class="n">YES</span><span class="p">,</span> <span class="n">ERR</span>
-<span class="k">implicit none</span>
-<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">1024</span><span class="p">)</span> <span class="kd">::</span> <span class="n">line</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">argument</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
-<span class="k">type</span><span class="p">(</span><span class="n">regex_pattern</span><span class="p">)</span> <span class="kd">::</span> <span class="n">p</span>
-<span class="kt">integer</span>             <span class="kd">::</span> <span class="n">ios</span>
-   <span class="k">call </span><span class="nb">get_command_argument</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">argument</span><span class="p">)</span>
-   <span class="k">if</span><span class="p">(</span><span class="n">argument</span><span class="p">.</span><span class="n">eq</span><span class="p">.</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="k">stop</span> <span class="s1">&#39;missing regular expression&#39;</span>
-   <span class="k">if</span> <span class="p">(</span><span class="n">getpat</span><span class="p">(</span><span class="nb">trim</span><span class="p">(</span><span class="n">argument</span><span class="p">),</span> <span class="n">p</span><span class="p">%</span><span class="n">pat</span><span class="p">)</span> <span class="p">.</span><span class="n">eq</span><span class="p">.</span> <span class="n">ERR</span><span class="p">)</span> <span class="k">then</span>
-<span class="k">      stop</span> <span class="s1">&#39;*M_match* Illegal pattern.&#39;</span>
-   <span class="k">endif</span>
-<span class="k">   </span><span class="n">INFINITE</span><span class="p">:</span> <span class="k">do</span>
-<span class="k">      read</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(a)&#39;</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">)</span><span class="n">line</span>
-      <span class="k">if</span><span class="p">(</span><span class="n">ios</span><span class="p">.</span><span class="n">ne</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="k">exit </span><span class="n">INFINITE</span>
-      <span class="k">if</span> <span class="p">(</span><span class="n">match</span><span class="p">(</span><span class="nb">trim</span><span class="p">(</span><span class="n">line</span><span class="p">)</span><span class="o">//</span><span class="nb">char</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">p</span><span class="p">%</span><span class="n">pat</span><span class="p">)</span> <span class="p">.</span><span class="n">eq</span><span class="p">.</span> <span class="n">YES</span><span class="p">)</span> <span class="k">then</span>
-<span class="k">         write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(*(g0,1x))&#39;</span><span class="p">)</span><span class="nb">trim</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-      <span class="k">endif</span>
-<span class="k">   enddo </span><span class="n">INFINITE</span>
-<span class="k">end program </span><span class="n">demo_m_match</span>
-</pre></div>
-
-    </section>
-    
     
     </div>
   </div>
@@ -435,10 +393,10 @@
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2021-09-17 20:41  
+            
           </p>
         </div>
-        <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> M_BRE was developed by John S. Urban</p></div>
+        <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> Fortran Program was developed by </p></div>
       </div>
       <br>
       </div> <!-- /container -->    

@@ -70,7 +70,7 @@ integer             :: ios
    enddo INFINITE
 end program demo_m_match
 ```
-## SUPPORTS FPM
+## SUPPORTS FPM ![fpm](docs/images/fpm_logo.gif)
 
    Alternatively, download the github repository and build it with
    fpm ( as described at [Fortran Package Manager](https://github.com/fortran-lang/fpm) )

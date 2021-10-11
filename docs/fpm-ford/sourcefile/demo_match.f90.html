@@ -10,7 +10,7 @@
     <meta name="author" content="" >
     <link rel="icon" href="../favicon.png">
 
-    <title>aseek.f90 &ndash; Fortran Program</title>
+    <title>demo_match.f90 &ndash; Fortran Program</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -112,7 +112,7 @@
     
   
   <div class="row">
-    <h1>aseek.f90
+    <h1>demo_match.f90
     <small>Source File</small>
     
     </h1>
@@ -130,12 +130,12 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 3.6% of total for source files.">28 statements</a>
+    title=" 3.2% of total for source files.">25 statements</a>
      </li> 
      
      
      
-    <li><i class="fa fa-code"></i><a href="../src/aseek.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/demo_match.f90"> Source File</a></li>
      
      
   </ul>
@@ -143,7 +143,7 @@
   
     
   
-     <li class="active">aseek.f90</li>
+     <li class="active">demo_match.f90</li>
   </ol>
 </div>
 </div>
@@ -173,7 +173,7 @@
   <div id="progs-0" class="panel-collapse collapse">
     <div class="list-group">
       
-      <a class="list-group-item" href="../program/demo_m_match~2.html">demo_m_match</a>
+      <a class="list-group-item" href="../program/demo_match.html">demo_match</a>
       
     </div>
   </div>
@@ -198,7 +198,7 @@
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
-    <a class="list-group-item" href="../sourcefile/aseek.f90.html#src">aseek.f90</a>
+    <a class="list-group-item" href="../sourcefile/demo_match.f90.html#src">demo_match.f90</a>
   </div>
 </div>
 
@@ -229,7 +229,7 @@
   <div id="progs-1" class="panel-collapse collapse">
     <div class="list-group">
       
-      <a class="list-group-item" href="../program/demo_m_match~2.html">demo_m_match</a>
+      <a class="list-group-item" href="../program/demo_match.html">demo_match</a>
       
     </div>
   </div>
@@ -254,7 +254,7 @@
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
-    <a class="list-group-item" href="../sourcefile/aseek.f90.html#src">aseek.f90</a>
+    <a class="list-group-item" href="../sourcefile/demo_match.f90.html#src">demo_match.f90</a>
   </div>
 </div>
 
@@ -265,34 +265,32 @@
 
     <section>
       <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="hl"><pre><span></span><a name="ln-1"></a><span class="k">program </span><span class="n">demo_m_match</span>
-<a name="ln-2"></a><span class="k">use </span><span class="n">M_match</span><span class="p">,</span>   <span class="k">only</span> <span class="p">:</span> <span class="n">getpat</span><span class="p">,</span> <span class="n">match</span><span class="p">,</span> <span class="n">regex_pattern</span><span class="p">,</span> <span class="n">amatch</span><span class="p">,</span> <span class="n">bpos</span><span class="p">,</span> <span class="n">epos</span>
-<a name="ln-3"></a><span class="k">use </span><span class="n">M_match</span><span class="p">,</span>   <span class="k">only</span> <span class="p">:</span> <span class="n">ERR</span>
-<a name="ln-4"></a><span class="k">implicit none</span>
-<a name="ln-5"></a><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">1024</span><span class="p">)</span> <span class="kd">::</span> <span class="n">line</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">argument</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
-<a name="ln-6"></a><span class="k">type</span><span class="p">(</span><span class="n">regex_pattern</span><span class="p">)</span> <span class="kd">::</span> <span class="n">p</span>
-<a name="ln-7"></a><span class="kt">integer</span>             <span class="kd">::</span> <span class="n">ios</span>
-<a name="ln-8"></a><span class="kt">integer</span>             <span class="kd">::</span> <span class="nb">loc</span>
-<a name="ln-9"></a><span class="kt">integer</span>             <span class="kd">::</span> <span class="n">from</span>
-<a name="ln-10"></a><span class="kt">integer</span>             <span class="kd">::</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span>
-<a name="ln-11"></a>   <span class="k">call </span><span class="nb">get_command_argument</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">argument</span><span class="p">)</span>
-<a name="ln-12"></a>   <span class="k">if</span><span class="p">(</span><span class="n">argument</span><span class="p">.</span><span class="n">eq</span><span class="p">.</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="k">stop</span> <span class="s1">&#39;missing regular expression&#39;</span>
-<a name="ln-13"></a>   <span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;PATTERN=&#39;</span><span class="p">,</span><span class="nb">trim</span><span class="p">(</span><span class="n">argument</span><span class="p">)</span>
-<a name="ln-14"></a>   <span class="k">if</span> <span class="p">(</span><span class="n">getpat</span><span class="p">(</span><span class="nb">trim</span><span class="p">(</span><span class="n">argument</span><span class="p">),</span> <span class="n">p</span><span class="p">%</span><span class="n">pat</span><span class="p">)</span> <span class="p">.</span><span class="n">eq</span><span class="p">.</span> <span class="n">ERR</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-15"></a><span class="k">      stop</span> <span class="s1">&#39;*M_match* Illegal pattern.&#39;</span>
-<a name="ln-16"></a>   <span class="k">endif</span>
-<a name="ln-17"></a><span class="k">   </span><span class="n">from</span><span class="o">=</span><span class="mi">1</span>
-<a name="ln-18"></a>   <span class="n">INFINITE</span><span class="p">:</span> <span class="k">do</span>
-<a name="ln-19"></a><span class="k">      read</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(a)&#39;</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">)</span><span class="n">line</span>
-<a name="ln-20"></a>      <span class="k">if</span><span class="p">(</span><span class="n">ios</span><span class="p">.</span><span class="n">ne</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="k">exit </span><span class="n">INFINITE</span>
-<a name="ln-21"></a>      <span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;LINE=&#39;</span><span class="p">,</span><span class="nb">trim</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-<a name="ln-22"></a>      <span class="nb">loc</span><span class="o">=</span> <span class="n">amatch</span><span class="p">(</span><span class="nb">trim</span><span class="p">(</span><span class="n">line</span><span class="p">)</span><span class="o">//</span><span class="nb">char</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span><span class="n">from</span><span class="p">,</span> <span class="n">p</span><span class="p">%</span><span class="n">pat</span><span class="p">)</span> 
-<a name="ln-23"></a>      <span class="k">if</span><span class="p">(</span><span class="nb">loc</span><span class="p">.</span><span class="n">ne</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="k">then</span>
-<a name="ln-24"></a><span class="k">         write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;LOC=&#39;</span><span class="p">,</span><span class="nb">loc</span><span class="p">,</span><span class="nb">trim</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-<a name="ln-25"></a>         <span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(i0,t6,i0)&#39;</span><span class="p">)(</span><span class="n">bpos</span><span class="p">(</span><span class="n">j</span><span class="p">),</span><span class="n">epos</span><span class="p">(</span><span class="n">j</span><span class="p">),</span><span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">size</span><span class="p">(</span><span class="n">epos</span><span class="p">))</span>
-<a name="ln-26"></a>      <span class="k">endif</span>
-<a name="ln-27"></a><span class="k">   enddo </span><span class="n">INFINITE</span>
-<a name="ln-28"></a><span class="k">end program </span><span class="n">demo_m_match</span>
+    <div class="hl"><pre><span></span><a name="ln-1"></a>           <span class="k">program </span><span class="n">demo_match</span>
+<a name="ln-2"></a>           <span class="k">use</span> <span class="kd">::</span> <span class="n">M_match</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">getpat</span><span class="p">,</span> <span class="n">match</span>
+<a name="ln-3"></a>           <span class="k">use</span> <span class="kd">::</span> <span class="n">M_match</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">MAXPAT</span><span class="p">,</span> <span class="n">MAXARG</span><span class="p">,</span> <span class="n">MAXLINE</span><span class="p">,</span> <span class="n">YES</span><span class="p">,</span> <span class="n">ERR</span>
+<a name="ln-4"></a>           <span class="k">implicit none</span>
+<a name="ln-5"></a>           <span class="c">! find _ find patterns in text</span>
+<a name="ln-6"></a>           <span class="kt">integer</span>                      <span class="kd">::</span> <span class="n">pat</span><span class="p">(</span><span class="n">MAXPAT</span><span class="p">)</span>
+<a name="ln-7"></a>           <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="n">MAXARG</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>      <span class="kd">::</span> <span class="n">argument</span>
+<a name="ln-8"></a>           <span class="kt">integer</span>                      <span class="kd">::</span> <span class="nb">stat</span>
+<a name="ln-9"></a><span class="nb">           </span><span class="kt">integer</span>                      <span class="kd">::</span> <span class="n">ios</span>
+<a name="ln-10"></a>           <span class="kt">integer</span>                      <span class="kd">::</span> <span class="n">len_arg</span>
+<a name="ln-11"></a>           <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="n">MAXLINE</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>     <span class="kd">::</span> <span class="n">line</span>
+<a name="ln-12"></a>           <span class="k">call </span><span class="nb">get_command_argument</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">argument</span><span class="p">,</span><span class="n">status</span><span class="o">=</span><span class="nb">stat</span><span class="p">,</span><span class="n">length</span><span class="o">=</span><span class="n">len_arg</span><span class="p">)</span>
+<a name="ln-13"></a>           <span class="k">if</span><span class="p">(</span><span class="nb">stat</span><span class="p">.</span><span class="n">ne</span><span class="p">.</span><span class="mf">0.</span><span class="nb">or</span><span class="p">.</span><span class="n">argument</span><span class="p">.</span><span class="n">eq</span><span class="p">.</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="k">then</span>
+<a name="ln-14"></a><span class="k">              write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="s2">&quot;usage: find pattern.&quot;</span>
+<a name="ln-15"></a>           <span class="n">elseif</span><span class="p">(</span><span class="n">getpat</span><span class="p">(</span><span class="n">argument</span><span class="p">(:</span><span class="n">len_arg</span><span class="p">),</span> <span class="n">pat</span><span class="p">)</span> <span class="p">.</span><span class="n">eq</span><span class="p">.</span> <span class="n">ERR</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-16"></a><span class="k">              write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="s2">&quot;illegal pattern.&quot;</span>
+<a name="ln-17"></a>           <span class="k">else</span>
+<a name="ln-18"></a><span class="k">              </span><span class="n">INFINITE</span><span class="p">:</span> <span class="k">do</span>
+<a name="ln-19"></a><span class="k">                 read</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(a)&#39;</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">)</span><span class="n">line</span>
+<a name="ln-20"></a>                 <span class="k">if</span><span class="p">(</span><span class="n">ios</span><span class="p">.</span><span class="n">ne</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="k">exit</span>
+<a name="ln-21"></a><span class="k">                 if</span><span class="p">(</span><span class="n">match</span><span class="p">(</span><span class="nb">trim</span><span class="p">(</span><span class="n">line</span><span class="p">),</span> <span class="n">pat</span><span class="p">)</span> <span class="p">.</span><span class="n">eq</span><span class="p">.</span> <span class="n">YES</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-22"></a><span class="k">                    write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(*(a))&#39;</span><span class="p">)</span><span class="nb">trim</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+<a name="ln-23"></a>                 <span class="k">endif</span>
+<a name="ln-24"></a><span class="k">              enddo </span><span class="n">INFINITE</span>
+<a name="ln-25"></a>           <span class="k">endif</span>
+<a name="ln-26"></a><span class="k">           end program </span><span class="n">demo_match</span>
 </pre></div>
 
     </section>

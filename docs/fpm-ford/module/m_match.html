@@ -130,7 +130,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title="100.0% of total for modules and submodules.">577 statements</a>
+    title="100.0% of total for modules and submodules.">575 statements</a>
      </li> 
      
      
@@ -172,6 +172,8 @@
   <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-0">Variables</a></h3></div>
   <div id="vars-0" class="panel-collapse collapse">
     <div class="list-group">
+      
+      <a class="list-group-item" href="../module/m_match.html#variable-maxtags">MAXTAGS</a>
       
       <a class="list-group-item" href="../module/m_match.html#variable-eos">EOS</a>
       
@@ -252,10 +254,65 @@
     </div>
     
     <div class="col-md-9" id='text'>
-    <p>integer,parameter :: CHARACTER=INTEGER</p>
-      
+    <h2>NAME</h2>
+<div class="codehilite"><pre><span></span><code><span class="n">M_match</span><span class="p">(</span><span class="mi">3</span><span class="n">fp</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="o">[</span><span class="n">M_MATCH</span><span class="o">]</span><span class="w"> </span><span class="n">Basic</span><span class="w"> </span><span class="n">Regular</span><span class="w"> </span><span class="n">Expressions</span><span class="w"></span>
+<span class="p">(</span><span class="nl">LICENSE</span><span class="p">:</span><span class="n">PD</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+
+<h2>SYNOPSIS</h2>
+<div class="codehilite"><pre><span></span><code>use M_match, only: match, amatch, getpat, makpat
+use M_match, only: YES, MAXPAT, MAXARG, MAXLINE, EOS, NEWLINE, ERR
+</code></pre></div>
+
+<h2>DESCRIPTION</h2>
+<div class="codehilite"><pre><span></span><code><span class="n">Find</span> <span class="n">a</span> <span class="k">string</span> <span class="n">matching</span> <span class="n">a</span> <span class="n">regular</span> <span class="n">expression</span><span class="p">.</span>
+
+   <span class="o">*</span>   <span class="n">zero</span> <span class="k">or</span> <span class="n">more</span> <span class="n">occurrences</span> <span class="n">of</span> <span class="n">the</span> <span class="n">previous</span> <span class="n">character</span>
+   <span class="p">.</span>   <span class="n">any</span> <span class="n">character</span>
+   <span class="o">^</span>   <span class="n">beginning</span> <span class="n">of</span> <span class="n">line</span>
+   <span class="err">$</span>   <span class="k">end</span> <span class="n">of</span> <span class="n">line</span>
+   <span class="p">[]</span>  <span class="n">class</span> <span class="n">of</span> <span class="n">characters</span><span class="p">.</span> <span class="n">Inside</span> <span class="n">the</span> <span class="n">braces</span>
+
+        <span class="o">^</span>  <span class="n">at</span> <span class="n">the</span> <span class="n">beginning</span> <span class="n">of</span> <span class="n">the</span> <span class="n">class</span> <span class="n">means</span> <span class="n">to</span>
+           <span class="n">negate</span> <span class="n">the</span> <span class="n">class</span><span class="p">.</span>
+        <span class="o">-</span>  <span class="k">if</span> <span class="k">not</span> <span class="n">the</span> <span class="n">first</span> <span class="k">or</span> <span class="n">last</span> <span class="n">character</span> <span class="n">in</span>
+           <span class="n">the</span> <span class="n">class</span><span class="p">,</span> <span class="n">denotes</span> <span class="n">a</span> <span class="n">range</span> <span class="n">of</span> <span class="n">characters</span>
+   <span class="n">Escape</span> <span class="nl">characters:</span>
+    <span class="n">\\n</span>  <span class="n">newline</span>
+    <span class="n">\\r</span>  <span class="n">carriage</span> <span class="k">return</span>
+    <span class="n">\\t</span>  <span class="n">tab</span>
+    <span class="n">\\b</span>  <span class="n">backspace</span>
+</code></pre></div>
+
+<h2>EXAMPLE</h2>
+<h2>AUTHOR</h2>
+<p>John S. Urban</p>
+<h2>REFERENCE</h2>
+<p>"Software Tools" by Kernighan and Plauger , 1976</p>
+<h2>LICENSE</h2>
+<p>Public Domain</p>
+      <br>
     
   
+    <div class="panel panel-default">
+      <div class="panel-heading">
+  <h3 class="panel-title">Uses</h3>
+      </div>
+      <ul class="list-group">
+      
+      <li class="list-group-item">
+  <ul class="list-inline">
+    
+    <li><a href="http://fortranwiki.org/fortran/show/ISO_FORTRAN_ENV">iso_fortran_env</a></li>
+    
+  </ul>
+      </li>
+      
+      
+      
+      </ul>
+    </div>
+    
 
     
     
@@ -273,6 +330,8 @@
   <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-1">Variables</a></h3></div>
   <div id="vars-1" class="panel-collapse collapse">
     <div class="list-group">
+      
+      <a class="list-group-item" href="../module/m_match.html#variable-maxtags">MAXTAGS</a>
       
       <a class="list-group-item" href="../module/m_match.html#variable-eos">EOS</a>
       
@@ -372,6 +431,20 @@
   
 <tr>
   
+  <td><span class="anchor" id="variable-maxtags"></span>integer,</td>
+  
+  <td>public,</td>
+  <td>parameter</td><td>::</td>
+  <td><strong>MAXTAGS</strong></td><td> =</td><td>10</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
   <td><span class="anchor" id="variable-eos"></span>integer(kind=byte),</td>
   
   <td>public,</td>
@@ -404,7 +477,7 @@
   
   <td>public,</td>
   <td>parameter</td><td>::</td>
-  <td><strong>YES</strong></td><td> =</td><td>1_byte</td><td><p>integer(kind=byte),parameter :: ARB=100_byte</p></td>
+  <td><strong>YES</strong></td><td> =</td><td>1_byte</td><td></td>
   
 </tr>
 
@@ -432,7 +505,7 @@
   
   <td>public,</td>
   <td>parameter</td><td>::</td>
-  <td><strong>MAXLINE</strong></td><td> =</td><td>1024_byte</td><td><p>integer(kind=byte),parameter :: MAXNAME=30_byte        ! TYPICAL FILE NAME SIZE</p></td>
+  <td><strong>MAXLINE</strong></td><td> =</td><td>1024_byte</td><td></td>
   
 </tr>
 
@@ -539,6 +612,10 @@ private function getpat_(arg, pat)
    
 </h3>
     
+
+
+
+<p>integer function getpat(str, pat)</p><a href="../proc/getpat_.html" class="pull-right"><emph>Read more&hellip;</emph></a>
     
     <h4>Arguments</h4>
     
@@ -646,8 +723,8 @@ private function getpat__(arg_str, pat)
   
 <tr>
   
-  <td><span class="anchor" ></span>integer(kind=def)</td>
-  <td></td>
+  <td><span class="anchor" ></span>integer(kind=def),</td>
+  <td>intent(out)</td>
   <td></td>
   
   <td></td><td>::</td>
@@ -701,7 +778,7 @@ private function makpat_(arg, from, delim, pat)
 
 
 
-<p>if(pat(lj)==bol .or. pat(lj)==eol .or. pat(lj)==closure .or. pat(lj-1) == boss .or. pat(lj-1) == eoss) then</p>
+<p>integer function makpat(arg, from, delim, pat)</p><a href="../proc/makpat_.html" class="pull-right"><emph>Read more&hellip;</emph></a>
     
     <h4>Arguments</h4>
     
@@ -819,6 +896,10 @@ private function amatch_(lin, from, pat)
    
 </h3>
     
+
+
+
+<p>Sample program:</p><a href="../proc/amatch_.html" class="pull-right"><emph>Read more&hellip;</emph></a>
     
     <h4>Arguments</h4>
     
@@ -1008,6 +1089,11 @@ private function match_(lin, pat)
    
 </h3>
     
+
+
+
+<p>Given a BRE(Basic Regular Expression) converted to a pattern
+  return whether an input string matches it.</p><a href="../proc/match_.html" class="pull-right"><emph>Read more&hellip;</emph></a>
     
     <h4>Arguments</h4>
     

@@ -130,7 +130,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title="16.7% of total for source files.">125 statements</a>
+    title="16.2% of total for source files.">125 statements</a>
      </li> 
      
      
@@ -374,40 +374,39 @@
 <a name="ln-107"></a><span class="s2">!!call mymatch(&quot;</span><span class="n">F</span><span class="p">[</span><span class="n">qpo</span><span class="s2">&quot;, &quot;</span><span class="n">FooBar</span><span class="s2">&quot;, .false.) ! intentional bad regex </span>
 <a name="ln-108"></a><span class="s2">call mymatch(&quot;</span><span class="n">F</span><span class="p">[</span><span class="n">qpo</span><span class="s2">&quot;, &quot;</span><span class="n">FooBar</span><span class="err">&quot;</span><span class="p">,</span> <span class="p">.</span><span class="n">true</span><span class="p">.)</span> <span class="c">! intentional bad regex </span>
 <a name="ln-109"></a>
-<a name="ln-110"></a>
-<a name="ln-111"></a><span class="c">! write up total results and if anything failed exit with a non-zero status</span>
-<a name="ln-112"></a><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(*(g0))&#39;</span><span class="p">)</span><span class="s1">&#39;TALLY;&#39;</span><span class="p">,</span><span class="n">tally</span>
-<a name="ln-113"></a><span class="k">if</span><span class="p">(</span><span class="k">all</span><span class="p">(</span><span class="n">tally</span><span class="p">))</span><span class="k">then</span>
-<a name="ln-114"></a><span class="k">   write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(*(g0))&#39;</span><span class="p">)</span><span class="s1">&#39;PASSED: all &#39;</span><span class="p">,</span><span class="nb">count</span><span class="p">(</span><span class="n">tally</span><span class="p">),</span><span class="s1">&#39; tests passed &#39;</span>
-<a name="ln-115"></a><span class="k">else</span>
-<a name="ln-116"></a><span class="k">   write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;FAILED: PASSED=&#39;</span><span class="p">,</span><span class="nb">count</span><span class="p">(</span><span class="n">tally</span><span class="p">),</span><span class="s1">&#39; FAILED=&#39;</span><span class="p">,</span><span class="nb">count</span><span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">tally</span><span class="p">)</span>
-<a name="ln-117"></a>   <span class="k">stop </span><span class="mi">4</span>
-<a name="ln-118"></a><span class="k">endif</span>
-<a name="ln-119"></a>
-<a name="ln-120"></a><span class="k">contains</span>
-<a name="ln-121"></a>
-<a name="ln-122"></a><span class="k">subroutine </span><span class="n">mymatch</span><span class="p">(</span><span class="n">expression</span><span class="p">,</span><span class="n">string</span><span class="p">,</span><span class="n">expected</span><span class="p">)</span>
-<a name="ln-123"></a><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">expression</span>
-<a name="ln-124"></a><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">string</span>
-<a name="ln-125"></a><span class="kt">logical</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>          <span class="kd">::</span> <span class="n">expected</span>
-<a name="ln-126"></a><span class="kt">integer</span>                     <span class="kd">::</span> <span class="n">jj</span>
-<a name="ln-127"></a><span class="kt">logical</span>                     <span class="kd">::</span> <span class="n">answer</span>
-<a name="ln-128"></a><span class="k">type</span><span class="p">(</span><span class="n">regex_pattern</span><span class="p">)</span>         <span class="kd">::</span> <span class="n">p</span>
-<a name="ln-129"></a>   <span class="n">jj</span><span class="o">=</span><span class="n">getpat</span><span class="p">(</span><span class="n">expression</span><span class="p">,</span> <span class="n">p</span><span class="p">%</span><span class="n">pat</span><span class="p">)</span>
-<a name="ln-130"></a>   <span class="k">if</span><span class="p">(</span><span class="n">jj</span> <span class="p">.</span><span class="n">eq</span><span class="p">.</span> <span class="n">ERR</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-131"></a><span class="k">      write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(*(g0,1x))&#39;</span><span class="p">).</span><span class="nb">not</span><span class="p">.</span><span class="n">expected</span><span class="p">,</span> <span class="s1">&#39;illegal pattern for regex&#39;</span><span class="p">,</span><span class="n">expression</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-132"></a>      <span class="p">&amp;</span> <span class="s1">&#39;and string&#39;</span><span class="p">,</span><span class="n">string</span><span class="p">,</span><span class="s1">&#39;expected&#39;</span><span class="p">,</span><span class="n">expected</span><span class="p">,</span><span class="s1">&#39;getpat=&#39;</span><span class="p">,</span><span class="n">jj</span>
-<a name="ln-133"></a>      <span class="n">tally</span><span class="o">=</span><span class="p">[</span><span class="n">tally</span><span class="p">,.</span><span class="n">false</span><span class="p">.]</span>
-<a name="ln-134"></a>   <span class="k">else</span>
-<a name="ln-135"></a><span class="k">      </span><span class="n">answer</span><span class="o">=</span><span class="n">match</span><span class="p">(</span><span class="n">string</span><span class="o">//</span><span class="nb">char</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span><span class="n">p</span><span class="p">%</span><span class="n">pat</span><span class="p">).</span><span class="n">eq</span><span class="p">.</span><span class="n">YES</span>
-<a name="ln-136"></a>      <span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(*(g0,1x))&#39;</span><span class="p">)</span> <span class="n">answer</span> <span class="p">.</span><span class="n">eqv</span><span class="p">.</span> <span class="n">expected</span><span class="p">,</span> <span class="s1">&#39;for regex&#39;</span><span class="p">,</span><span class="n">expression</span><span class="p">,</span><span class="s1">&#39;and string&#39;</span><span class="p">,</span><span class="n">string</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-137"></a>      <span class="p">&amp;</span> <span class="s1">&#39;expected&#39;</span><span class="p">,</span><span class="n">expected</span><span class="p">,</span><span class="s1">&#39;got&#39;</span><span class="p">,</span><span class="n">answer</span><span class="p">,</span><span class="s1">&#39;getpat=&#39;</span><span class="p">,</span><span class="n">jj</span>
-<a name="ln-138"></a>      <span class="n">tally</span><span class="o">=</span><span class="p">[</span><span class="n">tally</span><span class="p">,</span><span class="n">answer</span><span class="p">.</span><span class="n">eqv</span><span class="p">.</span><span class="n">expected</span><span class="p">]</span>
-<a name="ln-139"></a>   <span class="k">endif</span>
-<a name="ln-140"></a>
-<a name="ln-141"></a><span class="k">end subroutine </span><span class="n">mymatch</span>
-<a name="ln-142"></a>
-<a name="ln-143"></a><span class="k">end program </span><span class="n">test_suite_M_match</span>
+<a name="ln-110"></a><span class="c">! write up total results and if anything failed exit with a non-zero status</span>
+<a name="ln-111"></a><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(*(g0))&#39;</span><span class="p">)</span><span class="s1">&#39;TALLY;&#39;</span><span class="p">,</span><span class="n">tally</span>
+<a name="ln-112"></a><span class="k">if</span><span class="p">(</span><span class="k">all</span><span class="p">(</span><span class="n">tally</span><span class="p">))</span><span class="k">then</span>
+<a name="ln-113"></a><span class="k">   write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(*(g0))&#39;</span><span class="p">)</span><span class="s1">&#39;PASSED: all &#39;</span><span class="p">,</span><span class="nb">count</span><span class="p">(</span><span class="n">tally</span><span class="p">),</span><span class="s1">&#39; tests passed &#39;</span>
+<a name="ln-114"></a><span class="k">else</span>
+<a name="ln-115"></a><span class="k">   write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;FAILED: PASSED=&#39;</span><span class="p">,</span><span class="nb">count</span><span class="p">(</span><span class="n">tally</span><span class="p">),</span><span class="s1">&#39; FAILED=&#39;</span><span class="p">,</span><span class="nb">count</span><span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">tally</span><span class="p">)</span>
+<a name="ln-116"></a>   <span class="k">stop </span><span class="mi">4</span>
+<a name="ln-117"></a><span class="k">endif</span>
+<a name="ln-118"></a>
+<a name="ln-119"></a><span class="k">contains</span>
+<a name="ln-120"></a>
+<a name="ln-121"></a><span class="k">subroutine </span><span class="n">mymatch</span><span class="p">(</span><span class="n">expression</span><span class="p">,</span><span class="n">string</span><span class="p">,</span><span class="n">expected</span><span class="p">)</span>
+<a name="ln-122"></a><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">expression</span>
+<a name="ln-123"></a><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">string</span>
+<a name="ln-124"></a><span class="kt">logical</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>          <span class="kd">::</span> <span class="n">expected</span>
+<a name="ln-125"></a><span class="kt">integer</span>                     <span class="kd">::</span> <span class="n">jj</span>
+<a name="ln-126"></a><span class="kt">logical</span>                     <span class="kd">::</span> <span class="n">answer</span>
+<a name="ln-127"></a><span class="k">type</span><span class="p">(</span><span class="n">regex_pattern</span><span class="p">)</span>         <span class="kd">::</span> <span class="n">p</span>
+<a name="ln-128"></a>   <span class="n">jj</span><span class="o">=</span><span class="n">getpat</span><span class="p">(</span><span class="n">expression</span><span class="p">,</span> <span class="n">p</span><span class="p">%</span><span class="n">pat</span><span class="p">)</span>
+<a name="ln-129"></a>   <span class="k">if</span><span class="p">(</span><span class="n">jj</span> <span class="p">.</span><span class="n">eq</span><span class="p">.</span> <span class="n">ERR</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-130"></a><span class="k">      write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(*(g0,1x))&#39;</span><span class="p">).</span><span class="nb">not</span><span class="p">.</span><span class="n">expected</span><span class="p">,</span> <span class="s1">&#39;illegal pattern for regex&#39;</span><span class="p">,</span><span class="n">expression</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-131"></a>      <span class="p">&amp;</span> <span class="s1">&#39;and string&#39;</span><span class="p">,</span><span class="n">string</span><span class="p">,</span><span class="s1">&#39;expected&#39;</span><span class="p">,</span><span class="n">expected</span><span class="p">,</span><span class="s1">&#39;getpat=&#39;</span><span class="p">,</span><span class="n">jj</span>
+<a name="ln-132"></a>      <span class="n">tally</span><span class="o">=</span><span class="p">[</span><span class="n">tally</span><span class="p">,.</span><span class="n">false</span><span class="p">.]</span>
+<a name="ln-133"></a>   <span class="k">else</span>
+<a name="ln-134"></a><span class="k">      </span><span class="n">answer</span><span class="o">=</span><span class="n">match</span><span class="p">(</span><span class="n">string</span><span class="o">//</span><span class="nb">char</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span><span class="n">p</span><span class="p">%</span><span class="n">pat</span><span class="p">).</span><span class="n">eq</span><span class="p">.</span><span class="n">YES</span>
+<a name="ln-135"></a>      <span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(*(g0,1x))&#39;</span><span class="p">)</span> <span class="n">answer</span> <span class="p">.</span><span class="n">eqv</span><span class="p">.</span> <span class="n">expected</span><span class="p">,</span> <span class="s1">&#39;for regex&#39;</span><span class="p">,</span><span class="n">expression</span><span class="p">,</span><span class="s1">&#39;and string&#39;</span><span class="p">,</span><span class="n">string</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-136"></a>      <span class="p">&amp;</span> <span class="s1">&#39;expected&#39;</span><span class="p">,</span><span class="n">expected</span><span class="p">,</span><span class="s1">&#39;got&#39;</span><span class="p">,</span><span class="n">answer</span><span class="p">,</span><span class="s1">&#39;getpat=&#39;</span><span class="p">,</span><span class="n">jj</span>
+<a name="ln-137"></a>      <span class="n">tally</span><span class="o">=</span><span class="p">[</span><span class="n">tally</span><span class="p">,</span><span class="n">answer</span><span class="p">.</span><span class="n">eqv</span><span class="p">.</span><span class="n">expected</span><span class="p">]</span>
+<a name="ln-138"></a>   <span class="k">endif</span>
+<a name="ln-139"></a>
+<a name="ln-140"></a><span class="k">end subroutine </span><span class="n">mymatch</span>
+<a name="ln-141"></a>
+<a name="ln-142"></a><span class="k">end program </span><span class="n">test_suite_M_match</span>
 </pre></div>
 
     </section>

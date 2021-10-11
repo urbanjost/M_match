@@ -1,0 +1,57 @@
+program findmatch
+use M_bre, only : getpat, match, maxpat, maxarg, err, eos, yes, blank, maxline
+implicit none
+character(len=:),allocatable :: c_arg
+character(len=maxline-1)     :: line
+integer                      :: arg(MAXARG), pat(MAXPAT)
+integer                      :: lin(maxline)
+integer                      :: lineno
+integer                      :: ios
+
+integer                      :: istat
+integer                      :: argument_length
+character(len=:),allocatable :: argument
+
+   call get_command_argument(number=1,length=argument_length)
+   ! allocate string big enough to hold command line argument
+   allocate(character(len=argument_length) :: argument)
+   ! read the arguments
+   call get_command_argument(1,argument,status=istat)
+   c_arg=argument
+   deallocate(argument)
+   !!write(*,*)'c_arg=',c_arg
+   arg=blank
+   arg(:len(c_arg)+1)=f2r(c_arg)
+   !!write(*,*)'arg()=',arg(:len(c_arg)+1)
+   pat=blank
+   if (getpat(arg, pat) .eq. ERR) then
+      stop 'Illegal pattern.'
+   endif
+
+   lineno = 0
+   INFINITE: do
+      read(*,'(a)',iostat=ios) line
+      if(ios.ne.0)exit INFINITE
+      line=trim(line)//char(10)
+      lineno = lineno + 1
+      lin=f2r(line)
+      if (match(lin, pat) .eq. YES) then
+         write(*,'(*(g0,1x))')'YES:',lineno,trim(line)
+      else
+         !!write(*,'(*(g0,1x))')'NO :',lineno,trim(line)
+      endif
+   enddo INFINITE
+contains
+   function f2r(string)
+   character(len=*),intent(in) :: string
+   ! convert string to integer array with ratfor terminator
+   integer :: i
+   integer :: f2r(len(string)+1)
+   f2r=blank
+   do i=1,len_trim(string)
+      f2r(i)=ichar(string(i:i))
+   enddo
+   f2r(i)=eos
+   end function f2r
+
+end program findmatch

@@ -1,4 +1,5 @@
 build/*
 FODDER/
-src/source
+src/source/doc
+src/source/GPF_build_module.out
 man/*

@@ -4,22 +4,17 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-   
-    <meta name="description" content="Documentation for Fortran Program">
-   
-    <meta name="author" content="" >
+   <meta name="description" content="BREs (Basic Regular Expressions)">
+    <meta name="author" content="John S. Urban" >
     <link rel="icon" href="../favicon.png">
 
-    <title>amatch &ndash; Fortran Program</title>
+    <title>amatch &ndash; M_match</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
     <link href="../css/font-awesome.min.css" rel="stylesheet">
     <link href="../css/local.css" rel="stylesheet">
-    
     <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
-    
-    
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -44,57 +39,31 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="../index.html">Fortran Program </a>
+          <a class="navbar-brand" href="../index.html">M_match </a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-        
             <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
               <a href="#" class="dropdown-toggle"
               data-toggle="dropdown" role="button"
               aria-haspopup="true"
      aria-expanded="false">Contents <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          
-              
             <li><a href="../lists/files.html">Source Files</a></li>
-        
-        
-        
             <li><a href="../lists/modules.html">Modules</a></li>
-        
-            
-                                
             <li><a href="../lists/procedures.html">Procedures</a></li>
-        
-               
-            <li><a href="../lists/types.html">Derived Types</a></li>
-        
-        
+                   <li><a href="../lists/types.html">Derived Types</a></li>
             <li><a href="../lists/programs.html">Programs</a></li>
-        
+       
             </ul>
-            </li>
-
-
-<li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
-
-
-
-<li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
-
-
-
-<li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
-
-                             
-<li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
-
-
-<li class="visible-xs hidden-sm visible-lg"><a href="../lists/programs.html">Programs</a></li>
-
-          </ul>
         
+            </li>
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
+                             <li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/programs.html">Programs</a></li>
+          </ul>
         <form action="../search.html" class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
@@ -103,372 +72,398 @@
         <button type="submit" class="btn btn-default">Submit</button>
 -->
         </form>
-        
         </div><!--/.nav-collapse -->
       </div>
     </nav>
 
     <div class="container">
-    
-  
   <div class="row">
     <h1>amatch
-   <small>Interface</small>
-    
+      <small>Interface</small>
+      
     </h1>
-    
-<div class="row">
-  <div class="col-lg-12">
-<div class="well well-sm">
-  <ul class="list-inline" style="margin-bottom:0px;display:inline">
-     
-     
-     
-     
-    
-    
-     <li><i class="fa fa-list-ol"></i>
-       <a data-toggle="tooltip"
-    data-placement="bottom" data-html="true"
-    title="<p>10.3% of total for procedures.</p>Including implementation: 56 statements, 193.1% of total for procedures.">3 statements</a>
-     </li> 
-     
-     
-     
-    <li><i class="fa fa-code"></i><a href="../src/M_match.f90"> Source File</a></li>
-     
-     
-  </ul>
-  <ol class="breadcrumb in-well text-right">
-  
-    
-     <li><a href='../sourcefile/m_match.f90.html'>M_match.f90</a></li>
-    
-     <li><a href='../module/m_match.html'>M_match</a></li>
-    
-  
-     <li class="active">amatch</li>
-  </ol>
-</div>
-</div>
-</div>
-<script>
-  $(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-  })
-</script>
+      <div class="row" id="info-bar">
+    <div class="col-lg-12">
+      <div class="well well-sm">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+          <li id="statements"><i class="fa fa-list-ol"></i>
+            <a data-toggle="tooltip"
+               data-placement="bottom" data-html="true"
+               title="<p>10.3% of total for procedures.</p>Including implementation: 56 statements, 193.1% of total for procedures.">3 statements</a>
+          </li>
+
+            <li id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/M_match.f90"> Source File</a>
+            </li>
+        </ul>
+        <ol class="breadcrumb in-well text-right">
+              <li><a href='../sourcefile/m_match.f90.html'>M_match.f90</a></li>
+              <li><a href='../module/m_match.html'>M_match</a></li>
+          <li class="active">amatch</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+    })
+  </script>
 
   </div>
   
   <div class="row">
     <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
-      
-<div id="sidebar">
+        <div id="sidebar">
+      <h3>Contents</h3>
   
-<h3>Contents</h3>
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="panel panel-primary">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#modprocs-0">Module Procedures</a></h3></div>
-  <div id="modprocs-0" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../interface/amatch.html#moduleprocedure-amatch_">amatch_</a>
-      
-      <a class="list-group-item" href="../interface/amatch.html#moduleprocedure-amatch__">amatch__</a>
-      
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+      <div class="panel panel-primary">
+      <div class="panel-heading text-left">
+        <h3 class="panel-title">
+          <a data-toggle="collapse" href="#modprocs-0">Module Procedures</a>
+        </h3>
+      </div>
+      <div id="modprocs-0" class="panel-collapse collapse">
+        <div class="list-group">
+            <a class="list-group-item" href="../interface/amatch.html#moduleprocedure-amatch_">amatch_</a>
+            <a class="list-group-item" href="../interface/amatch.html#moduleprocedure-amatch__">amatch__</a>
+        </div>
+      </div>
     </div>
+
+
+
   </div>
-</div>
-
-
-
-
-</div>
 
     </div>
     
     <div class="col-md-9" id='text'>
       <h2>public interface amatch</h2>
    
-     
-     
-    
 
      <section class="visible-xs visible-sm hidden-md">
-       
-<h3>Contents</h3>
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="panel panel-primary">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#modprocs-1">Module Procedures</a></h3></div>
-  <div id="modprocs-1" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../interface/amatch.html#moduleprocedure-amatch_">amatch_</a>
-      
-      <a class="list-group-item" href="../interface/amatch.html#moduleprocedure-amatch__">amatch__</a>
-      
+         <h3>Contents</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+      <div class="panel panel-primary">
+      <div class="panel-heading text-left">
+        <h3 class="panel-title">
+          <a data-toggle="collapse" href="#modprocs-1">Module Procedures</a>
+        </h3>
+      </div>
+      <div id="modprocs-1" class="panel-collapse collapse">
+        <div class="list-group">
+            <a class="list-group-item" href="../interface/amatch.html#moduleprocedure-amatch_">amatch_</a>
+            <a class="list-group-item" href="../interface/amatch.html#moduleprocedure-amatch__">amatch__</a>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-
 
 
 
      </section>
      <br class="visible-xs visible-sm hidden-md">
      
-  
 
-  
 
-  
    <h2>Module Procedures</h2>
-   
-    
-  <div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="proc-amatch_"></span><h3>
-private function amatch_(lin, from, pat)
-    
-    
-   
+      <div class="panel panel-default">
+    <div class="panel-heading codesum"><span class="anchor" id="proc-amatch_"></span><h3>private  function amatch_(lin, from, pat)  
 </h3></div>
-  <div class="panel-body">
-       
+    <div class="panel-body">
+        <h2 id="name">NAME</h2>
+<div class="codehilite"><pre><span></span><code><span class="n">amatch</span><span class="p">(</span><span class="mi">3</span><span class="n">f</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="o">[</span><span class="n">M_MATCH</span><span class="o">]</span><span class="w"> </span><span class="n">look</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">pattern</span><span class="w"> </span><span class="n">matching</span><span class="w"> </span><span class="n">regular</span><span class="w"> </span><span class="n">expression</span><span class="p">;</span><span class="w"> </span><span class="k">returns</span><span class="w"> </span><span class="n">its</span><span class="w"> </span><span class="n">location</span><span class="w"></span>
+<span class="p">(</span><span class="nl">LICENSE</span><span class="p">:</span><span class="n">PD</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+
+<h2 id="synopsis">SYNOPSIS</h2>
+<div class="codehilite"><pre><span></span><code>loc = amatch(line, from, pat, tagbeg, tagend)
+
+ character(len=*),intent(in) :: line
+ integer,intent(in)          :: from
+ character                   :: pat(MAXPAT)
+ integer                     :: tagbeg(MAXTAGS), tagend(MAXTAGS)
+ integer                     :: loc
+</code></pre></div>
+
+<h2 id="description">DESCRIPTION</h2>
+<div class="codehilite"><pre><span></span><code><span class="n">AMATCH</span><span class="w"> </span><span class="n">scans</span><span class="w"> </span><span class="n">LINE</span><span class="w"> </span><span class="n">starting</span><span class="w"> </span><span class="n">at</span><span class="w"> </span><span class="n">location</span><span class="w"> </span><span class="n">FROM</span><span class="p">,</span><span class="w"> </span><span class="n">looking</span><span class="w"></span>
+<span class="k">for</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">pattern</span><span class="w"> </span><span class="n">which</span><span class="w"> </span><span class="n">matches</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">regular</span><span class="w"> </span><span class="n">expression</span><span class="w"> </span><span class="n">coded</span><span class="w"></span>
+<span class="n">in</span><span class="w"> </span><span class="n">PAT</span><span class="p">.</span><span class="w"> </span><span class="n">If</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">pattern</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">found</span><span class="p">,</span><span class="w"> </span><span class="n">its</span><span class="w"> </span><span class="n">starting</span><span class="w"> </span><span class="n">location</span><span class="w"></span>
+<span class="n">in</span><span class="w"> </span><span class="n">LINE</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">returned</span><span class="p">.</span><span class="w"> </span><span class="n">If</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">pattern</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="n">found</span><span class="p">,</span><span class="w"> </span><span class="n">AMATCH</span><span class="w"></span>
+<span class="n">returns</span><span class="w"> </span><span class="mf">0.</span><span class="w"></span>
+
+<span class="n">The</span><span class="w"> </span><span class="n">regular</span><span class="w"> </span><span class="n">expression</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">PAT</span><span class="w"> </span><span class="n">must</span><span class="w"> </span><span class="n">have</span><span class="w"> </span><span class="n">been</span><span class="w"> </span><span class="n">previously</span><span class="w"></span>
+<span class="n">encoded</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="n">GETPAT</span><span class="p">(</span><span class="mf">3f</span><span class="p">)</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="n">MAKPAT</span><span class="p">(</span><span class="mf">3f</span><span class="p">).</span><span class="w"> </span><span class="p">(</span><span class="n">For</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">complete</span><span class="w"> </span><span class="n">description</span><span class="w"></span>
+<span class="n">of</span><span class="w"> </span><span class="n">regular</span><span class="w"> </span><span class="n">expressions</span><span class="p">,</span><span class="w"> </span><span class="n">see</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">manpage</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">M_match</span><span class="p">.)</span><span class="w"></span>
+
+<span class="n">AMATCH</span><span class="p">(</span><span class="mf">3f</span><span class="p">)</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">special</span><span class="o">-</span><span class="n">purpose</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">MATCH</span><span class="p">(</span><span class="mf">3f</span><span class="p">),</span><span class="w"> </span><span class="n">which</span><span class="w"> </span><span class="n">should</span><span class="w"></span>
+<span class="n">be</span><span class="w"> </span><span class="n">used</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">most</span><span class="w"> </span><span class="n">cases</span><span class="p">.</span><span class="w"></span>
+</code></pre></div>
+
+<h2 id="options">OPTIONS</h2>
+<div class="codehilite"><pre><span></span><code><span class="n">LINE</span><span class="w">           </span><span class="k">input</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">scan</span><span class="w"></span>
+<span class="n">FROM</span><span class="w">           </span><span class="n">beginning</span><span class="w"> </span><span class="n">location</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="n">scan</span><span class="w"> </span><span class="n">from</span><span class="w"></span>
+<span class="n">PAT</span><span class="w">            </span><span class="n">coded</span><span class="w"> </span><span class="n">regular</span><span class="w"> </span><span class="n">expression</span><span class="w"> </span><span class="n">encoded</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="n">GETPAT</span><span class="p">(</span><span class="mf">3f</span><span class="p">)</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="n">MAKPAT</span><span class="p">(</span><span class="mf">3f</span><span class="p">)</span><span class="w"></span>
+<span class="n">TAGBEG</span><span class="p">,</span><span class="n">TAGEND</span><span class="w">  </span><span class="n">element</span><span class="w"> </span><span class="s">&quot;i + 1&quot;</span><span class="w"> </span><span class="n">returns</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="k">end</span><span class="p">,</span><span class="w"> </span><span class="n">respectively</span><span class="p">,</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="s">&quot;i&quot;</span><span class="n">th</span><span class="w"> </span><span class="n">tagged</span><span class="w"> </span><span class="n">subpattern</span><span class="w"></span>
+</code></pre></div>
+
+<h2 id="returns">RETURNS</h2>
+<div class="codehilite"><pre><span></span><code><span class="nv">LOC</span>   <span class="nv">returns</span> <span class="nv">location</span> <span class="nv">match</span> <span class="nv">was</span> <span class="nv">found</span> <span class="nv">or</span> <span class="nv">zero</span> <span class="ss">(</span><span class="mi">0</span><span class="ss">)</span> <span class="k">if</span> <span class="nv">no</span> <span class="nv">match</span> <span class="nv">remains</span>
+</code></pre></div>
+
+<h2 id="example">EXAMPLE</h2>
+<p>Sample program:</p>
+<div class="codehilite"><pre><span></span><code><span class="w"> </span><span class="nt">program</span><span class="w"> </span><span class="nt">demo_amatch</span><span class="w"></span>
+<span class="w"> </span><span class="nt">use</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="nt">M_match</span><span class="o">,</span><span class="w"> </span><span class="nt">only</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="nt">getpat</span><span class="o">,</span><span class="w"> </span><span class="nt">amatch</span><span class="w"></span>
+<span class="w"> </span><span class="nt">use</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="nt">M_match</span><span class="o">,</span><span class="w"> </span><span class="nt">only</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="nt">MAXPAT</span><span class="o">,</span><span class="w"> </span><span class="nt">MAXARG</span><span class="o">,</span><span class="w"> </span><span class="nt">MAXLINE</span><span class="o">,</span><span class="w"> </span><span class="nt">MAXTAGS</span><span class="o">,</span><span class="w"> </span><span class="nt">YES</span><span class="o">,</span><span class="w"> </span><span class="nt">ERR</span><span class="w"></span>
+<span class="w"> </span><span class="nt">implicit</span><span class="w"> </span><span class="nt">none</span><span class="w"></span>
+<span class="w"> </span><span class="o">!</span><span class="w"> </span><span class="nt">find</span><span class="w"> </span><span class="nt">_</span><span class="w"> </span><span class="nt">find</span><span class="w"> </span><span class="nt">patterns</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nt">text</span><span class="w"></span>
+<span class="w"> </span><span class="nt">integer</span><span class="w">                      </span><span class="o">::</span><span class="w"> </span><span class="nt">pat</span><span class="o">(</span><span class="nt">MAXPAT</span><span class="o">)</span><span class="w"></span>
+<span class="w"> </span><span class="nt">character</span><span class="o">(</span><span class="nt">len</span><span class="o">=</span><span class="nt">MAXARG-1</span><span class="o">)</span><span class="w">      </span><span class="o">::</span><span class="w"> </span><span class="nt">argument</span><span class="w"></span>
+<span class="w"> </span><span class="nt">integer</span><span class="w">                      </span><span class="o">::</span><span class="w"> </span><span class="nt">stat</span><span class="w"></span>
+<span class="w"> </span><span class="nt">integer</span><span class="w">                      </span><span class="o">::</span><span class="w"> </span><span class="nt">ios</span><span class="w"></span>
+<span class="w"> </span><span class="nt">integer</span><span class="w">                      </span><span class="o">::</span><span class="w"> </span><span class="nt">len_arg</span><span class="w"></span>
+<span class="w"> </span><span class="nt">integer</span><span class="w">                      </span><span class="o">::</span><span class="w"> </span><span class="nt">loc</span><span class="w"></span>
+<span class="w"> </span><span class="nt">integer</span><span class="w">                      </span><span class="o">::</span><span class="w"> </span><span class="nt">ii</span><span class="w"></span>
+<span class="w"> </span><span class="nt">character</span><span class="o">(</span><span class="nt">len</span><span class="o">=</span><span class="nt">MAXLINE-2</span><span class="o">)</span><span class="w">     </span><span class="o">::</span><span class="w"> </span><span class="nt">line</span><span class="w"></span>
+<span class="w"> </span><span class="nt">integer</span><span class="w">                      </span><span class="o">::</span><span class="w"> </span><span class="nt">tagbeg</span><span class="o">(</span><span class="nt">MAXTAGS</span><span class="o">),</span><span class="nt">tagend</span><span class="o">(</span><span class="nt">MAXTAGS</span><span class="o">)</span><span class="w"></span>
+<span class="w"> </span><span class="nt">call</span><span class="w"> </span><span class="nt">get_command_argument</span><span class="o">(</span><span class="nt">1</span><span class="o">,</span><span class="w"> </span><span class="nt">argument</span><span class="o">,</span><span class="nt">status</span><span class="o">=</span><span class="nt">stat</span><span class="o">,</span><span class="nt">length</span><span class="o">=</span><span class="nt">len_arg</span><span class="o">)</span><span class="w"></span>
+<span class="w"> </span><span class="nt">if</span><span class="o">(</span><span class="nt">stat</span><span class="p">.</span><span class="nc">ne</span><span class="p">.</span><span class="nc">0</span><span class="p">.</span><span class="nc">or</span><span class="p">.</span><span class="nc">argument</span><span class="p">.</span><span class="nc">eq</span><span class="o">.</span><span class="s1">&#39;&#39;</span><span class="o">)</span><span class="nt">then</span><span class="w"></span>
+<span class="w">    </span><span class="nt">write</span><span class="o">(*,*)</span><span class="s2">&quot;usage: find pattern.&quot;</span><span class="w"></span>
+<span class="w"> </span><span class="nt">elseif</span><span class="o">(</span><span class="nt">getpat</span><span class="o">(</span><span class="nt">argument</span><span class="o">(</span><span class="p">:</span><span class="nd">len_arg</span><span class="o">),</span><span class="w"> </span><span class="nt">pat</span><span class="o">)</span><span class="w"> </span><span class="p">.</span><span class="nc">eq</span><span class="o">.</span><span class="w"> </span><span class="nt">ERR</span><span class="o">)</span><span class="w"> </span><span class="nt">then</span><span class="w"></span>
+<span class="w">    </span><span class="nt">write</span><span class="o">(*,*)</span><span class="s2">&quot;illegal pattern.&quot;</span><span class="w"></span>
+<span class="w"> </span><span class="nt">else</span><span class="w"></span>
+<span class="w">    </span><span class="nt">INFINITE</span><span class="o">:</span><span class="w"> </span><span class="nt">do</span><span class="w"></span>
+<span class="w">       </span><span class="nt">read</span><span class="o">(*,</span><span class="s1">&#39;(a)&#39;</span><span class="o">,</span><span class="nt">iostat</span><span class="o">=</span><span class="nt">ios</span><span class="o">)</span><span class="nt">line</span><span class="w"></span>
+<span class="w">       </span><span class="nt">tagbeg</span><span class="o">=</span><span class="nt">-9999</span><span class="o">;</span><span class="nt">tagend</span><span class="o">=</span><span class="nt">-9999</span><span class="w"></span>
+<span class="w">       </span><span class="nt">if</span><span class="o">(</span><span class="nt">ios</span><span class="p">.</span><span class="nc">ne</span><span class="p">.</span><span class="nc">0</span><span class="o">)</span><span class="nt">exit</span><span class="w"></span>
+<span class="w">       </span><span class="nt">loc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">amatch</span><span class="o">(</span><span class="nt">trim</span><span class="o">(</span><span class="nt">line</span><span class="o">),</span><span class="w"> </span><span class="nt">1</span><span class="o">,</span><span class="w"> </span><span class="nt">pat</span><span class="o">,</span><span class="w"> </span><span class="nt">tagbeg</span><span class="o">,</span><span class="w"> </span><span class="nt">tagend</span><span class="o">)</span><span class="w"> </span><span class="o">!</span><span class="w"> </span><span class="nt">returns</span><span class="w"> </span><span class="nt">location</span><span class="o">/</span><span class="nt">0</span><span class="w"></span>
+<span class="w">       </span><span class="nt">if</span><span class="o">(</span><span class="nt">loc</span><span class="p">.</span><span class="nc">gt</span><span class="p">.</span><span class="nc">0</span><span class="o">)</span><span class="nt">then</span><span class="w"> </span><span class="o">!</span><span class="w"> </span><span class="nt">matched</span><span class="o">;</span><span class="w"> </span><span class="nt">if</span><span class="w"> </span><span class="nt">no</span><span class="w"> </span><span class="nt">match</span><span class="o">,</span><span class="w"> </span><span class="nt">loc</span><span class="w"> </span><span class="nt">is</span><span class="w"> </span><span class="nt">returned</span><span class="w"> </span><span class="nt">as</span><span class="w"> </span><span class="nt">0</span><span class="w"></span>
+<span class="w">          </span><span class="nt">write</span><span class="o">(*,</span><span class="s1">&#39;(*(a))&#39;</span><span class="o">)</span><span class="nt">trim</span><span class="o">(</span><span class="nt">line</span><span class="o">)</span><span class="w"></span>
+<span class="w">          </span><span class="o">!</span><span class="w"> </span><span class="o">(</span><span class="nt">element</span><span class="w"> </span><span class="s2">&quot;i + 1&quot;</span><span class="w"> </span><span class="nt">returns</span><span class="w"> </span><span class="nt">start</span><span class="w"> </span><span class="nt">or</span><span class="w"> </span><span class="nt">end</span><span class="o">,</span><span class="w"> </span><span class="nt">respectively</span><span class="o">,</span><span class="w"> </span><span class="nt">of</span><span class="w"> </span><span class="s2">&quot;i&quot;</span><span class="nt">th</span><span class="w"> </span><span class="nt">tagged</span><span class="w"> </span><span class="nt">subpattern</span><span class="o">)</span><span class="w"></span>
+<span class="w">          </span><span class="nt">write</span><span class="o">(*,</span><span class="s1">&#39;(*(i0,1x,i0,1x,i0,/))&#39;</span><span class="o">)(</span><span class="nt">ii</span><span class="o">,</span><span class="nt">tagbeg</span><span class="o">(</span><span class="nt">ii</span><span class="o">),</span><span class="nt">tagend</span><span class="o">(</span><span class="nt">ii</span><span class="o">),</span><span class="nt">ii</span><span class="o">=</span><span class="nt">1</span><span class="o">,</span><span class="nt">size</span><span class="o">(</span><span class="nt">tagbeg</span><span class="o">))</span><span class="w"></span>
+<span class="w">       </span><span class="nt">endif</span><span class="w"></span>
+<span class="w">    </span><span class="nt">enddo</span><span class="w"> </span><span class="nt">INFINITE</span><span class="w"></span>
+<span class="w"> </span><span class="nt">endif</span><span class="w"></span>
+<span class="w"> </span><span class="nt">end</span><span class="w"> </span><span class="nt">program</span><span class="w"> </span><span class="nt">demo_amatch</span><span class="w"></span>
+</code></pre></div>
+
+<h2 id="see-also">SEE ALSO</h2>
+<div class="codehilite"><pre><span></span><code>match, getpat, makpat
+</code></pre></div>
+
+<h2 id="diagnostics">DIAGNOSTICS</h2>
+<div class="codehilite"><pre><span></span><code>None
+</code></pre></div>
+
+<h2 id="author">AUTHOR</h2>
+<div class="codehilite"><pre><span></span><code>John S. Urban
+</code></pre></div>
+
+<h2 id="reference">REFERENCE</h2>
+<div class="codehilite"><pre><span></span><code>&quot;Software Tools&quot; by Kernighan and Plauger , 1976
+</code></pre></div>
+
+<h2 id="license">LICENSE</h2>
+<div class="codehilite"><pre><span></span><code>Public Domain
+</code></pre></div>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th>Type</th>
+<th>Intent</th><th>Optional</th>        <th>Attributes</th>
+        <th></th>
+        <th>Name</th>
+        <th></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=chr)
+            </td>
+<td></td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>lin</strong>(maxline)</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=def)
+            </td>
+<td></td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>from</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=chr)
+            </td>
+<td></td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>pat</strong>(maxpat)</td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>integer(kind=def)</small>
+    </h4>
     
 
-
-
-<p>Sample program:</p><a href="../proc/amatch_.html" class="pull-right"><emph>Read more&hellip;</emph></a>
-    
-    <h4>Arguments</h4>
-    
-      
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer(kind=chr)</td>
-  <td></td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>lin</strong>(maxline)</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer(kind=def)</td>
-  <td></td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>from</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer(kind=chr)</td>
-  <td></td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>pat</strong>(maxpat)</td><td></td>
-  
-</tr>
-
-</tbody>
-</table>
-
-      
-    
-    
-
-  
-  
-  
-  
-     <h4>Return Value <small>integer(kind=def)
-  </small></h4>
-  
-    
-
+    </div>
   </div>
-  </div>
 
-   
-    
-  <div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="proc-amatch__"></span><h3>
-private function amatch__(lin_str, from, pat)
-    
-    
-   
+      <div class="panel panel-default">
+    <div class="panel-heading codesum"><span class="anchor" id="proc-amatch__"></span><h3>private  function amatch__(lin_str, from, pat)  
 </h3></div>
-  <div class="panel-body">
-       
-    
-    
-    <h4>Arguments</h4>
-    
-      
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+    <div class="panel-body">
+        
 
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th>Type</th>
+<th>Intent</th><th>Optional</th>        <th>Attributes</th>
+        <th></th>
+        <th>Name</th>
+        <th></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              character(len=*),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>lin_str</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>from</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer(kind=chr)
+            </td>
+<td></td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>pat</strong>(maxpat)</td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
 
-
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>character(len=*),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>lin_str</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>from</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer(kind=chr)</td>
-  <td></td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>pat</strong>(maxpat)</td><td></td>
-  
-</tr>
-
-</tbody>
-</table>
-
-      
-    
-    
-
-  
-  
-  
-  
-     <h4>Return Value <small>integer(kind=def)
-  </small></h4>
-  
+    <h4>
+    Return Value
+    <small>integer(kind=def)</small>
+    </h4>
     
 
-  </div>
+    </div>
   </div>
 
-   
-     
 
  </div>
 </div>
-
 
     <hr>    
     </div> <!-- /container -->
     <footer>
       <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-md-4"><p>&copy; 2021 
-                                          </p></div>
-        <div class="col-xs-6 col-md-4 col-md-push-4">
+        <div class="col-xs-6 col-md-6"><p>M_match was developed by John S. Urban<br>&copy; 2022 
+</p>
+        </div>
+        <div class="col-xs-6 col-md-6">
           <p class="text-right">
             Documentation generated by 
-            <a href="https://github.com/cmacmackin/ford">FORD</a>
-            
-          </p>
+            <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2022-12-18 21:19            </p>
         </div>
-        <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> Fortran Program was developed by </p></div>
       </div>
       <br>
       </div> <!-- /container -->    
@@ -494,14 +489,11 @@ private function amatch__(lin_str, from, pat)
         extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
       });
     </script>
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
     
     <script src="../tipuesearch/tipuesearch_content.js"></script>
     <script src="../tipuesearch/tipuesearch_set.js"></script>
     <script src="../tipuesearch/tipuesearch.js"></script>
-    
     
   </body>
 </html>

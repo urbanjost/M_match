@@ -88,6 +88,35 @@ end program demo_m_match
         [dependencies]
         M_match        = { git = "https://github.com/urbanjost/M_match.git" }
 ```
+
+## DOCUMENTATION   ![docs](docs/images/docs.gif)
+
+### USER
+   - A single page that uses javascript to combine all the HTML
+     descriptions of the man-pages is at 
+     [BOOK_M_match](https://urbanjost.github.io/M_match/BOOK_M_match.html).
+
+   - a simple index to the man-pages in HTML form for the
+   [routines](https://urbanjost.github.io/M_match/man3.html) 
+
+   - There are man-pages in the repository download in the docs/ directory
+     that may be installed on ULS (Unix-Like Systems).
+
+   - ![man-pages](docs/images/manpages.gif)
+      + [manpages.zip](https://urbanjost.github.io/M_match/manpages.zip)
+      + [manpages.tgz](https://urbanjost.github.io/M_match/manpages.tgz)
+
+   - [CHANGELOG](docs/CHANGELOG.md) provides a history of significant changes
+
+### DEVELOPER
+   - [ford(1) output](https://urbanjost.github.io/M_match/fpm-ford/index.html).
+<!--
+   - [doxygen(1) output](https://urbanjost.github.io/M_match/doxygen_out/html/index.html).
+-->
+   - [github action status](docs/STATUS.md) 
+---
+
+
 ## PASSES TESTS
 ```text
 Sat Dec  5 01:26:24 EST 2020

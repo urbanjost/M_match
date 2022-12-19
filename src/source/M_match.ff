@@ -3,7 +3,7 @@
 !==================================================================================================================================!
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !==================================================================================================================================!
-$BLOCK COMMENT -file M_match.3m_match.man
+$BLOCK COMMENT --file M_match.3m_match.man
 NAME
    M_match(3fp) - [M_MATCH] Basic Regular Expressions
    (LICENSE:PD)
@@ -273,7 +273,7 @@ end function r2f
 !==================================================================================================================================!
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !==================================================================================================================================!
-$BLOCK COMMENT -file getpat.3m_match.man
+$BLOCK COMMENT --file getpat.3m_match.man
 NAME
    getpat(3f) - [M_MATCH] convert str into pattern
    (LICENSE:PD)
@@ -320,7 +320,7 @@ end function getpat__
 !==================================================================================================================================!
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !==================================================================================================================================!
-$BLOCK COMMENT -file PRIVATE/addset.3m_match.man
+$BLOCK COMMENT --file PRIVATE/addset.3m_match.man
 NAME
    addset(3f) - [M_MATCH] put c in string(J) if it fits, increment J
    (LICENSE:PD)
@@ -359,7 +359,7 @@ end function addset
 !==================================================================================================================================!
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !==================================================================================================================================!
-$BLOCK COMMENT -file PRIVATE/dodash.3m_match.man
+$BLOCK COMMENT --file PRIVATE/dodash.3m_match.man
 NAME
    dodash(3f) - [M_MATCH] expand array(i-1)-array(i+1) into set(j)... from valid
    (LICENSE:PD)
@@ -397,7 +397,7 @@ end subroutine dodash
 !==================================================================================================================================!
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !==================================================================================================================================!
-$BLOCK COMMENT -file PRIVATE/locate.3m_match.man
+$BLOCK COMMENT --file PRIVATE/locate.3m_match.man
 NAME
    locate(3f) - [M_MATCH] look for c in char class at pat(offset)
    (LICENSE:PD)
@@ -442,7 +442,7 @@ end function locate
 !==================================================================================================================================!
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !==================================================================================================================================!
-$BLOCK COMMENT -file match.3m_match.man
+$BLOCK COMMENT --file match.3m_match.man
 NAME
    match(3f) - [M_MATCH] find match to a basic regular expression anywhere on input string
    (LICENSE:PD)
@@ -542,7 +542,7 @@ end function match__
 !==================================================================================================================================!
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !==================================================================================================================================!
-$BLOCK COMMENT -file PRIVATE/patsiz.3m_match.man
+$BLOCK COMMENT --file PRIVATE/patsiz.3m_match.man
 NAME
    patsiz(3f) - [M_MATCH] returns size of pattern entry at pat(n)
    (LICENSE:PD)
@@ -585,7 +585,7 @@ end function patsiz
 !==================================================================================================================================!
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !==================================================================================================================================!
-$BLOCK COMMENT -file PRIVATE/stclos.3m_match.man
+$BLOCK COMMENT --file PRIVATE/stclos.3m_match.man
 NAME
    stclos(3f) - [M_MATCH] insert CLOSURE entry at pat(j)
    (LICENSE:PD)
@@ -627,7 +627,7 @@ end function stclos
 !==================================================================================================================================!
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !==================================================================================================================================!
-$BLOCK COMMENT -file PRIVATE/getccl.3m_match.man
+$BLOCK COMMENT --file PRIVATE/getccl.3m_match.man
 NAME
    getccl(3f) - [M_MATCH] expand char class at arg(i) into pat(j)
    (LICENSE:PD)
@@ -677,7 +677,7 @@ end function getccl
 !==================================================================================================================================!
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !==================================================================================================================================!
-$BLOCK COMMENT -file PRIVATE/filset.3m_match.man
+$BLOCK COMMENT --file PRIVATE/filset.3m_match.man
 NAME
    filset(3f) - [M_MATCH] expand set at array(i) into set(j), stop at delim
    (LICENSE:PD)
@@ -730,7 +730,7 @@ end subroutine filset
 !==================================================================================================================================!
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !==================================================================================================================================!
-$BLOCK COMMENT -file PRIVATE/esc.3m_match.man
+$BLOCK COMMENT --file PRIVATE/esc.3m_match.man
 NAME
    esc(3f) - [M_MATCH] map array(i) into escaped character if appropriate
    (LICENSE:PD)
@@ -822,7 +822,7 @@ end function esc
 !==================================================================================================================================!
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !==================================================================================================================================!
-$BLOCK COMMENT -file PRIVATE/omatch.3m_match.man
+$BLOCK COMMENT --file PRIVATE/omatch.3m_match.man
 NAME
    omatch(3f) - [M_MATCH] try to match a single pattern at pat(j)
    (LICENSE:PD)
@@ -896,17 +896,18 @@ end function omatch_
 !==================================================================================================================================!
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !==================================================================================================================================!
-$BLOCK COMMENT -file amatch.3m_match.man
+$BLOCK COMMENT --file amatch.3m_match.man
 NAME
    amatch(3f) - [M_MATCH] look for pattern matching regular expression; returns its location
    (LICENSE:PD)
 SYNOPSIS
-   loc = amatch(line, from, pat, tagbeg, tagend)
+$!   loc = amatch(line, from, pat, tagbeg, tagend)
+   loc = amatch(line, from, pat)
 
     character(len=*),intent(in) :: line
     integer,intent(in)          :: from
     character                   :: pat(MAXPAT)
-    integer                     :: tagbeg(MAXTAGS), tagend(MAXTAGS)
+$!    integer                     :: tagbeg(MAXTAGS), tagend(MAXTAGS)
     integer                     :: loc
 DESCRIPTION
    AMATCH scans LINE starting at location FROM, looking
@@ -925,7 +926,7 @@ OPTIONS
    LINE           input line to scan
    FROM           beginning location to start scan from
    PAT            coded regular expression encoded by GETPAT(3f) or MAKPAT(3f)
-   TAGBEG,TAGEND  element "i + 1" returns start or end, respectively, of "i"th tagged subpattern
+$!   TAGBEG,TAGEND  element "i + 1" returns start or end, respectively, of "i"th tagged subpattern
 RETURNS
    LOC   returns location match was found or zero (0) if no match remains
 EXAMPLE
@@ -944,7 +945,7 @@ EXAMPLE
     integer                      :: loc
     integer                      :: ii
     character(len=MAXLINE-2)     :: line
-    integer                      :: tagbeg(MAXTAGS),tagend(MAXTAGS)
+$!    integer                      :: tagbeg(MAXTAGS),tagend(MAXTAGS)
     call get_command_argument(1, argument,status=stat,length=len_arg)
     if(stat.ne.0.or.argument.eq.'')then
        write(*,*)"usage: find pattern."
@@ -953,13 +954,14 @@ EXAMPLE
     else
        INFINITE: do
           read(*,'(a)',iostat=ios)line
-          tagbeg=-9999;tagend=-9999
+$!          tagbeg=-9999;tagend=-9999
           if(ios.ne.0)exit
-          loc = amatch(trim(line), 1, pat, tagbeg, tagend) ! returns location/0
+          loc = amatch(trim(line), 1, pat) ! returns location/0
+$!          loc = amatch(trim(line), 1, pat, tagbeg, tagend) ! returns location/0
           if(loc.gt.0)then ! matched; if no match, loc is returned as 0
              write(*,'(*(a))')trim(line)
-             ! (element "i + 1" returns start or end, respectively, of "i"th tagged subpattern)
-             write(*,'(*(i0,1x,i0,1x,i0,/))')(ii,tagbeg(ii),tagend(ii),ii=1,size(tagbeg))
+$!             ! (element "i + 1" returns start or end, respectively, of "i"th tagged subpattern)
+$!             write(*,'(*(i0,1x,i0,1x,i0,/))')(ii,tagbeg(ii),tagend(ii),ii=1,size(tagbeg))
           endif
        enddo INFINITE
     endif
@@ -1045,7 +1047,7 @@ end function amatch__
 !==================================================================================================================================!
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !==================================================================================================================================!
-$BLOCK COMMENT -file makpat.3m_match.man
+$BLOCK COMMENT --file makpat.3m_match.man
 NAME
    makpat(3f) - [M_MATCH] make pattern from arg(from), terminate on delim
    (LICENSE:PD)
@@ -1133,7 +1135,7 @@ end function makpat_
 !==================================================================================================================================!
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !==================================================================================================================================!
-$BLOCK COMMENT -file error.3m_match.man
+$BLOCK COMMENT --file error.3m_match.man
 NAME
    error(3f) - [M_MATCH] print message and stop program execution
    (LICENSE:PD)

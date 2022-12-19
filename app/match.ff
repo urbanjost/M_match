@@ -4,7 +4,7 @@
 program match_exe
 use M_kracken, only : kracken, sget, lget, UNNAMED
 use M_io,      only : read_line
-use M_bre,     only : getpat, match, regex_pattern, yes, no, err
+use M_match,   only : getpat, match, regex_pattern, yes, no, err
 use M_strings, only : upper
 implicit none
 character(len=:),allocatable :: argument, line, prefix

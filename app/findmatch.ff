@@ -1,5 +1,5 @@
 program findmatch
-use M_bre, only : getpat, match, maxpat, maxarg, err, eos, yes, blank, maxline
+use M_match, only : getpat, match, maxpat, maxarg, err, eos, yes, blank, maxline
 implicit none
 character(len=:),allocatable :: c_arg
 character(len=maxline-1)     :: line

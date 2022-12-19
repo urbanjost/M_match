@@ -564,20 +564,22 @@ function patsiz(pat, n)
 ! ident_6="@(#)M_match::patsiz returns size of pattern entry at pat(n)"
 
 integer(kind=def) :: patsiz
-integer(kind=chr) :: pat(maxpat)
+integer(kind=chr) :: pat(MAXPAT)
 integer(kind=def) :: n
 
-   if (pat(n) == char .or. pat(n) == boss .or. pat(n) == eoss)then
+   select case(pat(n))
+    case(CHAR,BOSS,EOSS)
       patsiz = 2
-   elseif (pat(n) == bol .or. pat(n) == eol .or. pat(n) == any)then
+    case(BOL,EOL,ANY)
       patsiz = 1
-   elseif (pat(n) == ccl .or. pat(n) == nccl)then
+    case(CCL,NCCL)
       patsiz = pat(n + 1) + 2
-   elseif (pat(n) == closure)then      ! optional
-      patsiz = closize
-   else
-      call error("in patsiz: can't happen.")
-   endif
+    case(CLOSURE)                  ! optional
+      patsiz = CLOSIZE
+    case default
+      call error("in patsiz: cannot happen.")
+   end select
+
 end function patsiz
 !==================================================================================================================================!
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!

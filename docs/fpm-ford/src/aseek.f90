@@ -1,5 +1,5 @@
 program demo_m_match
-use M_match,   only : getpat, match, regex_pattern, amatch, bpos, epos
+use M_match,   only : getpat, regex_pattern, amatch, bpos, epos
 use M_match,   only : ERR
 implicit none
 character(len=1024) :: line='', argument=''
@@ -7,7 +7,7 @@ type(regex_pattern) :: p
 integer             :: ios
 integer             :: loc
 integer             :: from
-integer             :: i, j
+integer             :: j
    call get_command_argument(1,argument)
    if(argument.eq.'')stop 'missing regular expression'
    write(*,*)'PATTERN=',trim(argument)

@@ -4,15 +4,13 @@ src_dir: src
          example
          test
 output_dir: docs/fpm-ford
-
-project: M_BRE
-summary: basic regular expressions
-project_github: https://github.com/urbanjost/M_BRE
+project: M_match
+summary: BREs (Basic Regular Expressions)
+project_github: https://github.com/urbanjost/M_match
 project_download:
 author: John S. Urban
-author_email: urbanjost@gmail.com
-github: https://github.com/urbanjost/M_BRE
-
+author_email: urbanjost@comcast.net
+github: https://github.com/urbanjost/M_match
 media_dir: docs/images
 exclude_dir: archive
              FODDER
@@ -29,3 +27,5 @@ creation_date: %Y-%m-%d %H:%M %z
 md_extensions: markdown.extensions.toc
                markdown.extensions.smarty
 ---
+
+{!README.md!}

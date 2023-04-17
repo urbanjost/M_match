@@ -1,4 +1,4 @@
-# TOML file for fpm as described at https://github.com/fortran-lang/fpm/blob/master/manifest-reference.md
+# TOML file for fpm as described at https://fpm.fortran-lang.org/en/spec/manifest.html
 name = "M_match"
 version = "0.1.0"
 license = "MIT"
@@ -9,6 +9,9 @@ description = "Basic Regular Expressions"
 categories = ["Regular Expressions"]
 keywords = ["fortran", "BRE", "RE", "regular expressions"]
 homepage = "https://github.com/urbanjost/M_match.git"
+     
+[build]
+#module-naming = true
 
 [[executable]]
 name="seek"

@@ -4,7 +4,7 @@
 <meta name="generator" content="vi(1)/vim(1)" />
 <meta name="description" content="@(#)M_match::BOOK_M_match: BOOK composed of pages for man(1) topic M_match"/>
 <meta name="author"      content="urbanjs" />
-<meta name="date"        content="2021-10-11" />
+<meta name="date"        content="2023-07-20" />
 <meta name="keywords"    content="Fortran, Fortran code, source code repository, Fortran library, Fortran archive, source code" />
 <!--
    Pick your favorite style sheet from among the eight offerings:
@@ -26,7 +26,9 @@
 <link  rel="alternate stylesheet"  href="StyleSheets/Swiss.css"        type="text/css"  title="Swiss"        />
 <link  rel="alternate stylesheet"  href="StyleSheets/Traditional.css"  type="text/css"  title="Traditional"  />
 <link  rel="alternate stylesheet"  href="StyleSheets/Ultramarine.css"  type="text/css"  title="Ultramarine"  />
+<!--
 <link  rel="alternate stylesheet"  href="StyleSheets/fortran.css"      type="text/css"  title="fortran"      />
+-->
 <style type="text/css">
 /*<![CDATA[*/
 /* ======================================================== */
@@ -44,13 +46,25 @@ pX {
    font-family: "Lucida Console", Monaco, monospace
 }
 /* ======================================================== */
-divX {
-   background-color: #ffffff;
+div {
+   background-color: white;
+   /*
+   border-style: solid;
+   border-color: blue;
+   */
+}
+tbody {
+   background-color: white;
    border-style: solid;
    border-color: blue;
 }
 /* ======================================================== */
-bodyX{
+summary{
+   background-color: white;
+}
+/* ======================================================== */
+body{
+   background-color: gray40;
    margin-top:     1.58em;
    margin-left:    8%;
    margin-right:   4%;
@@ -88,7 +102,7 @@ p{ padding-bottom:1em; }
 p{ padding-top:1em; }
 p{ whitespace: pre-wrap; }
 h5,h6 { font-size:100% }
-a.nav,a:link.nav, a:visited.nav { background-color:#FFF; color:#000; }
+a.nav,a:link.nav, a:visited.nav { background-color:#FFF; color:#F00; }
 XXtable { border:double #000; border-collapse:collapse; }
 XXtable { border-collapse:collapse; }
 XXtd { border:thin solid #888; }
@@ -98,7 +112,7 @@ blockquote { display:block; font-size:100%; line-height:1.1em; margin:0 0 1.5em;
 pre { background-color:#DDD; font-size:100%; overflow:auto; padding:1em; }
 a,li span { color:#000; }
 a:hover, a.nav:hover, a:hover math { background-color:#000; color:#FFF; }
-#Container { margin:0 10px; text-align:center; background-color: #BBB}
+#Container { margin:0 10px; text-align:center; background-color: gray50}
 #Content { border-top:none; margin:auto; padding:0.3em; text-align:left; width:100%; max-width:55em; background:#FFF}
 span.webName { font-size:.5em; }
 textarea#content { font-size: 1em; line-height: 1.125; }
@@ -168,7 +182,14 @@ function get_cookie ( cookie_name )
     return '' ;
 }
 </script>
-
+<style>
+/* ======================================================== */
+/* Start new page on printing */
+BR.newpage{
+   page-break-before:always
+}
+/* ======================================================== */
+</style>
 <!--
 -->
 
@@ -257,24 +278,8 @@ function copyIframe(iframeId, divId ) {
 <body onload="set_style_from_cookie()">
 <a name="TOP">&nbsp;</a>
 
-<div>
-<form>
-Themes:
-<input  type="submit"  onclick="switch_style('man');return          false;"  name="theme"  value="man"          id="man">
-<input  type="submit"  onclick="switch_style('Simple');return       false;"  name="theme"  value="Simple"       id="Simple">
-<input  type="submit"  onclick="switch_style('fortran');return      false;"  name="theme"  value="fortran"      id="fortran">
-<input  type="submit"  onclick="switch_style('Local');return        false;"  name="theme"  value="Local"        id="Local">
-<input  type="submit"  onclick="switch_style('Chocolate');return    false;"  name="theme"  value="Chocolate"    id="Chocolate">
-<input  type="submit"  onclick="switch_style('Midnight');return     false;"  name="theme"  value="Midnight"     id="Midnight">
-<input  type="submit"  onclick="switch_style('Modernist');return    false;"  name="theme"  value="Modernist"    id="Modernist">
-<input  type="submit"  onclick="switch_style('Oldstyle');return     false;"  name="theme"  value="Oldstyle"     id="Oldstyle">
-<input  type="submit"  onclick="switch_style('Steely');return       false;"  name="theme"  value="Steely"       id="Steely">
-<input  type="submit"  onclick="switch_style('Traditional');return  false;"  name="theme"  value="Traditional"  id="Traditional">
-<input  type="submit"  onclick="switch_style('Ultramarine');return  false;"  name="theme"  value="Ultramarine"  id="Ultramarine">
-</form>
-</div>
-<hr>
-<h3>SHORTCUTS:</h3>
+<details>
+<summary>shortcuts:</summary>
 <script language="JavaScript1.1"  type="text/javascript">
 document.write('<center><table border="4" >\n');
 document.write('<tbody>\n');
@@ -285,9 +290,29 @@ if (COLUMNS != 5 ){
 document.write('</tbody>\n');
 document.write('</table></center>\n');
 document.write('<hr\n>');
+document.write('</details>');
 FIRSTPASS=1;
 FRAMECOUNT=0;
 loadthem();
 </script>
 </div>
 </body>
+<div>
+<form>
+Themes:
+<input  type="submit"  onclick="switch_style('man');return          false;"  name="theme"  value="man"          id="man">
+<input  type="submit"  onclick="switch_style('Simple');return       false;"  name="theme"  value="Simple"       id="Simple">
+<!--
+<input  type="submit"  onclick="switch_style('fortran');return      false;"  name="theme"  value="fortran"      id="fortran">
+-->
+<input  type="submit"  onclick="switch_style('Local');return        false;"  name="theme"  value="Local"        id="Local">
+<input  type="submit"  onclick="switch_style('Chocolate');return    false;"  name="theme"  value="Chocolate"    id="Chocolate">
+<input  type="submit"  onclick="switch_style('Midnight');return     false;"  name="theme"  value="Midnight"     id="Midnight">
+<input  type="submit"  onclick="switch_style('Modernist');return    false;"  name="theme"  value="Modernist"    id="Modernist">
+<input  type="submit"  onclick="switch_style('Oldstyle');return     false;"  name="theme"  value="Oldstyle"     id="Oldstyle">
+<input  type="submit"  onclick="switch_style('Steely');return       false;"  name="theme"  value="Steely"       id="Steely">
+<input  type="submit"  onclick="switch_style('Traditional');return  false;"  name="theme"  value="Traditional"  id="Traditional">
+<input  type="submit"  onclick="switch_style('Ultramarine');return  false;"  name="theme"  value="Ultramarine"  id="Ultramarine">
+</form>
+</div>
+</html>

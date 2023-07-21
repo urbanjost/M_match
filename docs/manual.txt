@@ -1,0 +1,308 @@
+amatch (3m_match)    - [M_MATCH] look for pattern matching regular expression; returns its location (LICENSE:PD)
+error (3m_match)     - [M_MATCH] print message and stop program execution (LICENSE:PD)
+getpat (3m_match)    - [M_MATCH] convert str into pattern (LICENSE:PD)
+M_match (3m_match)   - [M_MATCH] Basic Regular Expressions (LICENSE:PD)
+makpat (3m_match)    - [M_MATCH] make pattern from arg(from), terminate on delim (LICENSE:PD)
+match (3m_match)     - [M_MATCH] find match to a basic regular expression anywhere on input string (LICENSE:PD)
+error(3m_match) 					       error(3m_match)
+
+
+
+NAME
+  error(3f) - [M_MATCH] print message and stop program execution (LICENSE:PD)
+
+SYNOPSIS
+  subroutine error(line)
+
+DESCRIPTION
+  print message and stop program execution
+
+OPTIONS
+EXAMPLE
+AUTHOR
+  John S. Urban
+
+REFERENCE
+  "Software Tools" by Kernighan and Plauger , 1976
+
+LICENSE
+  Public Domain
+
+
+
+				 July 20, 2023		       error(3m_match)
+M_match(3m_match)					     M_match(3m_match)
+
+
+
+NAME
+  M_match(3fp) - [M_MATCH] Basic Regular Expressions (LICENSE:PD)
+
+SYNOPSIS
+  use M_match, only: match, amatch, getpat, makpat use M_match, only: YES,
+  MAXPAT, MAXARG, MAXLINE, EOS, NEWLINE, ERR
+
+DESCRIPTION
+  Find a string matching a regular expression.
+
+    •  zero or more occurrences of the previous character
+
+    .  any character
+
+    ^  beginning of line
+
+    $  end of line
+
+    [] class of characters. Inside the braces
+
+	       ^  at the beginning of the class means to
+		  negate the class.
+	       -  if not the first or last character in
+		  the class, denotes a range of characters
+    Escape characters:
+
+      \n
+	newline
+
+      \r
+	carriage return
+
+      \t
+	tab
+
+      \b
+	backspace
+
+EXAMPLE
+AUTHOR
+  John S. Urban
+
+REFERENCE
+  "Software Tools" by Kernighan and Plauger , 1976
+
+LICENSE
+  Public Domain
+
+
+
+				 July 20, 2023		     M_match(3m_match)
+makpat(3m_match)					      makpat(3m_match)
+
+
+
+NAME
+  makpat(3f) - [M_MATCH] make pattern from arg(from), terminate on delim
+  (LICENSE:PD)
+
+SYNOPSIS
+  integer function makpat(arg, from, delim, pat)
+
+DESCRIPTION
+  make pattern from arg(from), terminate on delim
+
+OPTIONS
+EXAMPLE
+AUTHOR
+  John S. Urban
+
+REFERENCE
+  "Software Tools" by Kernighan and Plauger , 1976
+
+LICENSE
+  Public Domain
+
+
+
+				 July 20, 2023		      makpat(3m_match)
+match(3m_match) 					       match(3m_match)
+
+
+
+NAME
+  match(3f) - [M_MATCH] find match to a basic regular expression anywhere on
+  input string (LICENSE:PD)
+
+
+SYNOPSIS
+  integer function match(line, pattern)
+
+      character(len=*),intent(in) :: line
+      integer,intent(in)	  :: pattern(MAXPAT)
+
+
+DESCRIPTION
+  Given a BRE(Basic Regular Expression) converted to a pattern return whether
+  an input string matches it.
+
+OPTIONS
+  LIN
+    string to search for a match to the pattern
+
+  PAT
+    pattern generated from a BRE using getpat(3f) or makpat(3f).
+
+EXAMPLE
+  Sample program:
+
+      program demo_match
+      use :: M_match, only : getpat, match
+      use :: M_match, only : MAXPAT, MAXARG, MAXLINE, YES, ERR
+      implicit none
+      ! find _ find patterns in text
+      integer			   :: pat(MAXPAT)
+      character(len=MAXARG-1)	   :: argument
+      integer			   :: stat
+      integer			   :: ios
+      integer			   :: len_arg
+      character(len=MAXLINE-2)	   :: line
+      call get_command_argument(1, argument,status=stat,length=len_arg)
+      if(stat.ne.0.or.argument.eq.'')then
+	 write(*,*)"usage: find pattern."
+      elseif(getpat(argument(:len_arg), pat) .eq. ERR) then
+	 write(*,*)"illegal pattern."
+      else
+	 INFINITE: do
+	    read(*,'(a)',iostat=ios)line
+	    if(ios.ne.0)exit
+	    if(match(trim(line), pat) .eq. YES) then
+	       write(*,'(*(a))')trim(line)
+	    endif
+	 enddo INFINITE
+      endif
+      end program demo_match
+
+
+AUTHOR
+  John S. Urban
+
+REFERENCE
+  "Software Tools" by Kernighan and Plauger , 1976
+
+LICENSE
+  Public Domain
+
+
+
+				 July 20, 2023		       match(3m_match)
+getpat(3m_match)					      getpat(3m_match)
+
+
+
+NAME
+  getpat(3f) - [M_MATCH] convert str into pattern (LICENSE:PD)
+
+SYNOPSIS
+  integer function getpat(str, pat)
+
+DESCRIPTION
+  convert str into pattern
+
+OPTIONS
+EXAMPLE
+AUTHOR
+  John S. Urban
+
+REFERENCE
+  "Software Tools" by Kernighan and Plauger , 1976
+
+LICENSE
+  Public Domain
+
+
+
+				 July 20, 2023		      getpat(3m_match)
+amatch(3m_match)					      amatch(3m_match)
+
+
+
+NAME
+  amatch(3f) - [M_MATCH] look for pattern matching regular expression; returns
+  its location (LICENSE:PD)
+
+SYNOPSIS
+  loc = amatch(line, from, pat)
+
+      character(len=*),intent(in) :: line
+      integer,intent(in)	  :: from
+      character 		  :: pat(MAXPAT)
+      integer			  :: loc
+
+DESCRIPTION
+  AMATCH scans LINE starting at location FROM, looking for a pattern which
+  matches the regular expression coded in PAT. If the pattern is found, its
+  starting location in LINE is returned. If the pattern is not found, AMATCH
+  returns 0.
+
+  The regular expression in PAT must have been previously encoded by
+  GETPAT(3f) or MAKPAT(3f). (For a complete description of regular
+  expressions, see the manpage for M_match.)
+
+  AMATCH(3f) is a special-purpose version of MATCH(3f), which should be used
+  in most cases.
+
+OPTIONS
+  LINE
+    input line to scan
+
+  FROM
+    beginning location to start scan from
+
+  PAT
+    coded regular expression encoded by GETPAT(3f) or MAKPAT(3f)
+
+RETURNS
+  LOC
+    returns location match was found or zero (0) if no match remains
+
+EXAMPLE
+  Sample program:
+
+      program demo_amatch
+      use :: M_match, only : getpat, amatch
+      use :: M_match, only : MAXPAT, MAXARG, MAXLINE, MAXTAGS, YES, ERR
+      implicit none
+      ! find _ find patterns in text
+      integer			   :: pat(MAXPAT)
+      character(len=MAXARG-1)	   :: argument
+      integer			   :: stat
+      integer			   :: ios
+      integer			   :: len_arg
+      integer			   :: loc
+      integer			   :: ii
+      character(len=MAXLINE-2)	   :: line
+      call get_command_argument(1, argument,status=stat,length=len_arg)
+      if(stat.ne.0.or.argument.eq.'')then
+	 write(*,*)"usage: find pattern."
+      elseif(getpat(argument(:len_arg), pat) .eq. ERR) then
+	 write(*,*)"illegal pattern."
+      else
+	 INFINITE: do
+	    read(*,'(a)',iostat=ios)line
+	    if(ios.ne.0)exit
+	    loc = amatch(trim(line), 1, pat) ! returns location/0
+	    if(loc.gt.0)then ! matched; if no match, loc is returned as 0
+	       write(*,'(*(a))')trim(line)
+	    endif
+	 enddo INFINITE
+      endif
+      end program demo_amatch
+
+
+SEE ALSO
+  match, getpat, makpat
+
+DIAGNOSTICS
+  None
+
+AUTHOR
+  John S. Urban
+
+REFERENCE
+  "Software Tools" by Kernighan and Plauger , 1976
+
+LICENSE
+  Public Domain
+
+
+
+				 July 20, 2023		      amatch(3m_match)
